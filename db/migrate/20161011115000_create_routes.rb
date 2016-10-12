@@ -3,7 +3,7 @@ class CreateRoutes < ActiveRecord::Migration[5.0]
     create_table :routes do |t|
       t.string :origin
       t.string :destination
-      t.integer :distance
+      t.references :airline, index: true, foreign_key: true
 
       t.timestamps
     end

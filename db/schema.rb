@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20161011162321) do
   create_table "airlines", force: :cascade do |t|
     t.string   "code"
     t.string   "name"
+    t.string   "country"
     t.float    "fee"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -28,31 +29,34 @@ ActiveRecord::Schema.define(version: 20161011162321) do
     t.string   "name"
     t.string   "city"
     t.string   "country"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.float    "timezone"
     t.float    "tax"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "flights", force: :cascade do |t|
-    t.integer  "number"
+    t.string   "ref"
     t.datetime "departure"
     t.datetime "arrival"
-    t.integer  "airline_id"
+    t.float    "price"
     t.integer  "route_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["airline_id"], name: "index_flights_on_airline_id", using: :btree
     t.index ["route_id"], name: "index_flights_on_route_id", using: :btree
   end
 
   create_table "routes", force: :cascade do |t|
     t.string   "origin"
     t.string   "destination"
-    t.integer  "distance"
+    t.integer  "airline_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["airline_id"], name: "index_routes_on_airline_id", using: :btree
   end
 
-  add_foreign_key "flights", "airlines"
   add_foreign_key "flights", "routes"
+  add_foreign_key "routes", "airlines"
 end
