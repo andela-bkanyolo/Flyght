@@ -3,6 +3,7 @@ class Route < ApplicationRecord
 
   validates :origin, :destination, :presence => true
   belongs_to :airline
+  has_many :flights
 
   def origin_airport
     Airport.find_by code: origin
