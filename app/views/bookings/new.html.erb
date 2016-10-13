@@ -1,5 +1,6 @@
 <%= form_for @booking do |f| %>
-  Passengers:
+  Please add passengers for your itenary below.
+
   <ul>
     <%= f.fields_for :passengers do |passengers_form| %>
       <li>
@@ -14,4 +15,5 @@
       </li>
     <% end %>
   </ul>
+  <%= f.submit "Save"  %>
 <% end %>
