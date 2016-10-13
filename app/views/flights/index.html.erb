@@ -42,11 +42,40 @@
     </div>
 
     <div class="input-field col s12 l2">
-      <button id="search" class="btn waves-effect waves-light col s12 l12" type=submit">Search
+      <button id="search" class="btn waves-effect waves-light col s12 l12" type="submit">Search
         <i class="material-icons right">search</i>
       </button>
     </div>
   </div>
+
+  <% end %>
+
+  <% if @flights %>
+
+    <div class="col s12 l12" id="flights">
+    <%= form_tag '#', class: "col l12",
+    method: 'get', id: "flight_view" do %>
+
+      <% @flights.each do |flight| %>
+
+        <div class="col s12 l12">
+
+          <input name="results" value=<%=flight.attributes %> flight.ref type="radio" id=<%= flight.ref %> />
+          <label id="flight_label" for=<%= flight.ref %> > <%=flight.description %>
+          </label>
+
+        </div>
+
+      <% end %>
+
+      <div class="input-field col s12 l2">
+        <button id="select" class="btn waves-effect waves-light col s12 l12" type="submit">Select Flight
+          <i class="material-icons right">select</i>
+        </button>
+      </div>
+
+    <% end %>
+    </div>
 
   <% end %>
 
