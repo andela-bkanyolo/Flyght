@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161011162321) do
+ActiveRecord::Schema.define(version: 20161013055959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,14 @@ ActiveRecord::Schema.define(version: 20161011162321) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "bookings", force: :cascade do |t|
+    t.string   "reference"
+    t.integer  "flight_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["flight_id"], name: "index_bookings_on_flight_id", using: :btree
+  end
+
   create_table "flights", force: :cascade do |t|
     t.string   "ref"
     t.datetime "departure"
@@ -48,6 +56,16 @@ ActiveRecord::Schema.define(version: 20161011162321) do
     t.index ["route_id"], name: "index_flights_on_route_id", using: :btree
   end
 
+  create_table "passengers", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "age"
+    t.string   "passport"
+    t.integer  "booking_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_passengers_on_booking_id", using: :btree
+  end
+
   create_table "routes", force: :cascade do |t|
     t.string   "origin"
     t.string   "destination"
@@ -57,6 +75,8 @@ ActiveRecord::Schema.define(version: 20161011162321) do
     t.index ["airline_id"], name: "index_routes_on_airline_id", using: :btree
   end
 
+  add_foreign_key "bookings", "flights"
   add_foreign_key "flights", "routes"
+  add_foreign_key "passengers", "bookings"
   add_foreign_key "routes", "airlines"
 end

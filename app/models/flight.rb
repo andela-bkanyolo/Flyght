@@ -1,6 +1,7 @@
 class Flight < ApplicationRecord
   validates :ref, :departure, :arrival, :price, :presence => true
   belongs_to :route
+  has_many :bookings
   attr_reader :description, :details
 
   def self.generate_flights(from, to, date)

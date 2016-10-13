@@ -51,22 +51,23 @@
   <% end %>
 
   <% if @flights %>
-
     <div class="col s12 l12" id="flights">
-    <%= form_tag '#', class: "col l12",
+    <%= form_tag new_booking_path, class: "col l12",
     method: 'get', id: "flight_view" do %>
 
       <% @flights.each do |flight| %>
 
         <div class="col s12 l12">
 
-          <input name="flight" value=<%=flight.id %> flight.ref type="radio" id=<%= flight.ref %> />
+          <input name="flight" value=<%=flight.id %> type="radio" id=<%= flight.ref %> />
           <label id="flight_label" for=<%= flight.ref %> > <%=flight.description %>
           </label>
 
         </div>
 
       <% end %>
+
+      <input type="hidden" name="travelers" value=<%= @passengers %> >
 
       <div class="input-field col s12 l2">
         <button id="select" class="btn waves-effect waves-light col s12 l12" type="submit">Select Flight

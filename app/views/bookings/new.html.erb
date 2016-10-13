@@ -1,0 +1,17 @@
+<%= form_for @booking do |f| %>
+  Passengers:
+  <ul>
+    <%= f.fields_for :passengers do |passengers_form| %>
+      <li>
+        <%= passengers_form.label :name %>
+        <%= passengers_form.text_field :name %>
+
+        <%= passengers_form.label :age %>
+        <%= passengers_form.text_field :age %>
+
+        <%= passengers_form.label :passport %>
+        <%= passengers_form.text_field :passport %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
