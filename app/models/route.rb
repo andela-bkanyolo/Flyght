@@ -12,4 +12,5 @@ class Route < ApplicationRecord
   def destination_airport
     Airport.find_by code: destination
   end
+
 end
