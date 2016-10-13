@@ -1,15 +1,17 @@
 class Flight < ApplicationRecord
   validates :ref, :departure, :arrival, :price, :presence => true
   belongs_to :route
-  attr_reader :description
+  attr_reader :description, :details
 
   def self.generate_flights(from, to, date)
     from = Airport.find_by id: from
     to = Airport.find_by id: to
     routes = Route.where ({ origin: from.code, destination: to.code })
     routes.collect do |route|
-      Flight.new({ ref: generate_ref(route), departure: random_time(date),
-        arrival: random_time(date), price: calculate_price(route), route_id: route.id })
+      departure = random_time(date)
+      arrival = departure + rand(2..20).hours
+      Flight.create({ ref: generate_ref(route), departure: departure,
+        arrival: arrival, price: calculate_price(route), route_id: route.id })
     end
   end
 
