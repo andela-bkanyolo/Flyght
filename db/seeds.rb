@@ -5,18 +5,37 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-File.open("#{Rails.root}/public/seed/airports.dat") do |airports|
+File.open("#{Rails.root}/public/seed/airports.csv") do |airports|
   airports.read.each_line do |airport|
-    id, nam, cit, countr, iata, icao, lat, longt, alt, tz, dst, tzd = airport.chomp.split(",")
+    id,ident,type,nam,lat,longt,elevation_ft,
+    continent,countr,iso_region,cit,scheduled_service,gps_code,
+    iata,local_code,home_link,wikipedia_link,keywords = airport.chomp.split(",")
+
+    type.gsub!(/\A"|"\Z/, '')
+    if type == "large_airport"
+      #  to remove the quotes from the text:
+      iata.gsub!(/\A"|"\Z/, '') if iata
+      nam.gsub!(/\A"|"\Z/, '')
+      cit.gsub!(/\A"|"\Z/, '')
+      countr.gsub!(/\A"|"\Z/, '')
+      lat.gsub!(/\A"|"\Z/, '')
+      longt.gsub!(/\A"|"\Z/, '')
+      countr.gsub!(/\A"|"\Z/, '')
+
+      Airport.create({ code: iata, name: nam, city:  cit, country: countr,
+      latitude: lat, longitude: longt, tax: Random.rand(1..20)})
+    end
+  end
+end
+
+File.open("#{Rails.root}/public/seed/iso_country.csv") do |isos|
+  isos.read.each_line do |iso|
+    nam, cod = iso.chomp.split(",")
     #  to remove the quotes from the text:
-    iata.gsub!(/\A"|"\Z/, '')
     nam.gsub!(/\A"|"\Z/, '')
-    cit.gsub!(/\A"|"\Z/, '')
-    countr.gsub!(/\A"|"\Z/, '')
-    tz.gsub!(/\A"|"\Z/, '')
-    # to create each record in the database
-    Airport.create({ code: iata, name: nam, city:  cit, country: countr,
-      latitude: lat, longitude: longt, timezone: tz, tax: Random.rand(10)})
+    cod.gsub!(/\A"|"\Z/, '')
+
+    Airport.where(country: cod).update_all(country: nam)
   end
 end
 
@@ -28,7 +47,7 @@ File.open("#{Rails.root}/public/seed/airlines.dat") do |airlines|
     nam.gsub!(/\A"|"\Z/, '')
     countr.gsub!(/\A"|"\Z/, '')
     # to create each record in the database
-    Airline.create({ code: iata, name: nam, country: countr, fee: Random.rand(10)})
+    Airline.create({ code: iata, name: nam, country: countr, fee: Random.rand(1..10)})
   end
 end
 
@@ -43,6 +62,10 @@ File.open("#{Rails.root}/public/seed/routes.dat") do |routes|
     a = Airline.find_by code: iata
     o = Airport.find_by code: source
     d = Airport.find_by code: dest
-    a.routes.create({ origin: source, destination: dest }) if (a && o && d)
+
+    dist = Geocoder::Calculations.distance_between([o.latitude, o.longitude],
+      [d.latitude, d.longitude], :units => :km) if (o && d)
+    time = dist / 900 if dist
+    a.routes.create({ origin: source, destination: dest, distance: dist, duration: time }) if (a && o && d)
   end
 end

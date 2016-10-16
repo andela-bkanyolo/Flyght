@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(version: 20161013055959) do
     t.string   "country"
     t.float    "latitude"
     t.float    "longitude"
-    t.float    "timezone"
     t.float    "tax"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -69,6 +68,8 @@ ActiveRecord::Schema.define(version: 20161013055959) do
   create_table "routes", force: :cascade do |t|
     t.string   "origin"
     t.string   "destination"
+    t.float    "distance"
+    t.float    "duration"
     t.integer  "airline_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
