@@ -8,7 +8,8 @@
           <h6 class="row"><%= flight.route.origin_airport.city %></h6>
         </div>
         <div class="col s4 m4 l4 center-align">
-          <i class="material-icons center medium">flight</i>
+          <i class="row material-icons center medium">flight</i>
+          <h6 class="row"><%= flight.departure.strftime "%Y-%m-%d" %></h6>
         </div>
         <div class="col s4 m4 l4 center-align">
           <h5 class="row"><%= flight.route.destination %></h5>
@@ -18,7 +19,7 @@
       </div>
       <div class="card-content center-align">
         <h6 class="row"><%= flight.route.airline.name %></h6>
-        <h6 class="row"><%= flight.ref %></h6>
+        <h6 class="row">Flight Number: <%= flight.ref %></h6>
         <h4 class="row"><%= "#{flight.price} USD" %></h4>
       </div>
     </div>
