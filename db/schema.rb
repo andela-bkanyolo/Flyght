@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20161013055959) do
 
   create_table "bookings", force: :cascade do |t|
     t.string   "reference"
+    t.string   "email"
     t.integer  "flight_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

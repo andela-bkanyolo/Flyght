@@ -3,6 +3,7 @@ class BookingsController < ApplicationController
     @flight_id = params[:flight]
     @passengers = params[:passengers]
     if @flight_id
+      @flight =  Flight.find_by id: @flight_id
       @booking = Booking.new
       params[:passengers].to_i.times { @booking.passengers.build }
     else
