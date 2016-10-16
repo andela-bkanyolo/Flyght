@@ -1,4 +1,4 @@
-<div class="col s12 l12" id="flights">
+
   <% if flash[:airports] %>
     <div id="error_explanation">
       <h5>
@@ -18,24 +18,24 @@
       </h5>
     </div>
   <% else %>
-    <%= form_tag new_booking_path, class: "col l12",
+    <%= form_tag new_booking_path, class: "row",
       method: 'get', id: "flight_view" do %>
 
       <% @flights.each do |flight| %>
-
-        <div class="col s12 l12">
-
-          <input name="flight" value=<%=flight.id %> type="radio" id=<%= flight.ref %> />
-          <label id="flight_label" for=<%= flight.ref %> > <%=flight.description %>
-          </label>
-
+        <div class="col s12 m6 l4">
+          <div>
+            <input name="flight" value=<%= flight.id %> type="radio" id=<%= flight.id %> />
+            <%= label_tag 'flight_label', "Book this flight (#{flight.price} USD)", for: flight.id %>
+          </div>
+          <div>
+            <%= render partial: "partials/flight", object: flight %>
+          </div>
         </div>
-
       <% end %>
 
-      <input type="hidden" name="travelers" value=<%= @passengers %> >
+      <%= hidden_field_tag "passengers", @passengers %>
 
-      <div class="input-field col s12 l2">
+      <div class="input-field">
         <button id="select" class="btn waves-effect waves-light col s12 l12" type="submit">Select Flight
           <i class="material-icons right">select</i>
         </button>
@@ -43,4 +43,4 @@
 
     <% end %>
   <% end %>
-</div>
+
