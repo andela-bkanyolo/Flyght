@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  root 'flights#index'
+  root 'flights#home'
 
   resources :flights, only: [:index]
-  resources :bookings, except: :index
+  resources :bookings, only: [:new, :create, :show, :edit, :update, :destroy]
 end

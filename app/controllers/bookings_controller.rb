@@ -1,11 +1,12 @@
 class BookingsController < ApplicationController
   def new
-    @flight_chosen = params[:flight]
+    @flight_id = params[:flight]
     @booking = Booking.new
     params[:travelers].to_i.times { @booking.passengers.build }
   end
 
   def create
+
   end
 
   def show
@@ -17,7 +18,7 @@ class BookingsController < ApplicationController
   def update
   end
 
-  def destory
+  def destroy
   end
 
   private

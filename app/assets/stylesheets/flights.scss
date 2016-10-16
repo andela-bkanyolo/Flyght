@@ -9,3 +9,16 @@
   font-weight: bold;
   font-size: 120%;
 }
+
+#flight_form {
+  margin-top: 40px;
+}
+
+#search {
+  margin-bottom: 20px;
+}
+
+#error_explanation {
+  color: darken(red, 10%);
+  padding: em(15px);
+}
