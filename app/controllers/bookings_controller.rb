@@ -17,7 +17,7 @@ class BookingsController < ApplicationController
     @flight = Flight.find_by id: booking_params[:flight_id]
     @booking = Booking.new(booking_params)
     if @booking.save
-      BookingMailer.booking_confirmation(@booking).deliver_now
+      BookingMailer.booking_confirmation(@booking).deliver_later
       redirect_to @booking
     else
       @total = booking_params[:price]
