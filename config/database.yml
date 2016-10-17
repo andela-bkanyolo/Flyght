@@ -78,8 +78,8 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-development:
-  adapter: postgresql
-  host: localhost
-  username: user
-  database: app-dev
+production:
+  <<: *default
+  database: flyght_production
+  username: flyght
+  password: <%= ENV['FLYGHT_DATABASE_PASSWORD'] %>
