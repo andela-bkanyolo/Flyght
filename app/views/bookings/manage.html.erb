@@ -1,0 +1,15 @@
+<%= form_tag manage_path, method: 'get', id: "booking_form" do %>
+<div class="container">
+  <div class="row">
+    <div class="input-field col s12 m12 l4 offset-l4">
+      <%= label_tag :ref, "Confirmation Number" %>
+      <%= text_field_tag :ref %>
+    </div>
+    <div class="input-field col s12 m12 l4 offset-l4">
+      <button id="search" class="btn waves-effect waves-light col s12 l12" type="submit">Search
+      <i class="material-icons right">search</i>
+      </button>
+    </div>
+  </div>
+</div>
+<% end %>

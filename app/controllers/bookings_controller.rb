@@ -40,6 +40,18 @@ class BookingsController < ApplicationController
   def destroy
   end
 
+  def manage
+    ref = params[:ref]
+    if ref
+      @booking = Booking.find_by reference: ref
+      if @booking
+        redirect_to booking_path(@booking)
+      else
+        redirect_to manage_path, alert: "Booking #{ref} does not exist"
+      end
+    end
+  end
+
   private
 
   def booking_params
