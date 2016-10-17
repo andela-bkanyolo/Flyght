@@ -1,19 +1,64 @@
 <%= form_for @booking do |f| %>
-  Please add passengers for your itenary below.
+<div class="container">
+  <div class="row">
 
-  <ul>
-    <%= f.fields_for :passengers do |passengers_form| %>
-      <li>
-        <%= passengers_form.label :name %>
-        <%= passengers_form.text_field :name %>
+  <% if @booking.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@booking.errors.count, "error") %> were found:
+      </h2>
+      <ul>
+        <% @booking.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-        <%= passengers_form.label :age %>
-        <%= passengers_form.text_field :age %>
 
-        <%= passengers_form.label :passport %>
-        <%= passengers_form.text_field :passport %>
-      </li>
-    <% end %>
-  </ul>
-  <%= f.submit "Save"  %>
+    <h5 class="col s12 m12 l12 center-align">You've chosen to book the below flight.</h5>
+    <div class="col s12 m4 l4 offset-m4 offset-l4">
+      <%= render partial: "partials/flight", object: @flight %>
+    </div>
+    <h5 class="col s12 m12 l12 center-align">Please fill in the details for all passengers below then click on "Book Flight" to book the flight.</h5>
+      <%= hidden_field_tag "booking[reference]", @reference %>
+
+      <div class="input-field col s12 m12 l12">
+        <%= f.text_field :email, type: :email %>
+        <%= f.label :email, "Your email" %>
+      </div>
+
+      <%= hidden_field_tag "booking[flight_id]", @flight.id %>
+
+      <ul>
+        <%= f.fields_for :passengers do |passengers_form| %>
+        <li>
+          <div class="col s12 m6 l4" id="passenger">
+            <div class="input-field">
+              <%= passengers_form.label :name, "Full Names" %>
+              <%= passengers_form.text_field :name %>
+            </div>
+            <div class="input-field">
+              <%= passengers_form.label :age %>
+              <%= passengers_form.text_field :age %>
+            </div>
+            <div class="input-field">
+              <%= passengers_form.label :passport, "Passport Number" %>
+              <%= passengers_form.text_field :passport %>
+            </div>
+            <div class="input-field">
+              <%= passengers_form.label :phone, "Phone Number" %>
+              <%= passengers_form.text_field :phone %>
+            </div>
+          </div>
+        </li>
+        <% end %>
+      </ul>
+
+      <button id="search" class="btn waves-effect waves-light col s12 m12 l12" type="submit">Book Flight
+        <i class="material-icons right">send</i>
+      </button>
+
+  </div>
+</div>
 <% end %>
