@@ -4,7 +4,8 @@ class CreatePassengers < ActiveRecord::Migration[5.0]
       t.string :name
       t.integer :age
       t.string :passport
-      t.references :booking, index: true, foreign_key: true
+      t.string :phone
+      t.references :booking, index: true
 
       t.timestamps
     end

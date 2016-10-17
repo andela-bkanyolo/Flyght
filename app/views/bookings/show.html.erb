@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <h5 class="col s12 m12 l12 center-align"><%="Confirmation Number: #{@booking.reference}" %></h5>
+    <h5 class="col s12 m12 l12 center-align"><%="Date Booked: #{@booking.created_at.strftime '%Y-%m-%d %H:%M'}" %></h5>
+    <div class="col s12 m4 l4 offset-m4 offset-l4">
+      <%= render partial: "partials/flight", object: @booking.flight %>
+    </div>
+    <h5 class="col s12 m12 l12 center-align">Here are the passengers booked for this flight</h5>
+
+    <table class="striped col s12 m12 l12 center-align">
+      <thead>
+        <tr>
+          <th data-field="id">NAME</th>
+          <th data-field="name">AGE</th>
+          <th data-field="price">PASSPORT NUMBER</th>
+          <th data-field="price">PHONE NUMBER</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @booking.passengers.each do |passenger| %>
+          <tr>
+            <td><%= passenger.name %></td>
+            <td><%= passenger.age %></td>
+            <td><%= passenger.passport %></td>
+            <td><%= passenger.phone %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+</div>
