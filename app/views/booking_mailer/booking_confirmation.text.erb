@@ -1,0 +1,34 @@
+Here's your flight itinerary from <%= @booking.created_at.strftime '%Y-%m-%d %H:%M' %>
+
+===============================================
+
+Confirmation Number: <%= @booking.reference %>
+
+===============================================
+
+Flight Number: <%= @booking.flight.ref %>
+
+===============================================
+
+Departure Airport: <%= @booking.flight.route.origin %>
+
+===============================================
+
+Departure: <%= @booking.flight.departure.strftime '%Y-%m-%d %H:%M' %>
+
+===============================================
+
+Arrival Airport: <%= @booking.flight.route.destination %>
+
+===============================================
+
+Arrival: <%= @booking.flight.arrival.strftime '%Y-%m-%d %H:%M' %>
+
+===============================================
+
+Price: <%= @booking.flight.price %>
+
+===============================================
+
+Thank you for booking with Flyght -- where dreams come true.
+

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Here's your flight itinerary from <%= @booking.created_at.strftime '%Y-%m-%d %H:%M' %></h1>
+    <p>
+      Confirmation Number: <%= @booking.reference %><br>
+    </p>
+    <p>
+      Flight Number: <%= @booking.flight.ref %><br>
+    </p>
+    <p>
+      Departure Airport: <%= @booking.flight.route.origin %><br>
+    </p>
+    <p>
+      Departure: <%= @booking.flight.departure.strftime '%Y-%m-%d %H:%M' %><br>
+    </p>
+    <p>
+      Arrival Airport: <%= @booking.flight.route.destination %><br>
+    </p>
+    <p>
+      Arrival: <%= @booking.flight.arrival.strftime '%Y-%m-%d %H:%M' %><br>
+    </p>
+    <p>
+      Price: <%= @booking.flight.price %><br>
+    </p>
+    <p>
+      Thank you for booking with Flyght -- where dreams come true.
+    </p>
+  </body>
+</html>
