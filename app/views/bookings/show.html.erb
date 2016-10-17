@@ -2,6 +2,7 @@
   <div class="row">
     <h5 class="col s12 m12 l12 center-align"><%="Confirmation Number: #{@booking.reference}" %></h5>
     <h5 class="col s12 m12 l12 center-align"><%="Date Booked: #{@booking.created_at.strftime '%Y-%m-%d %H:%M'}" %></h5>
+    <h5 class="col s12 m12 l12 center-align">Total price: <%= @booking.price %> USD</h5>
     <div class="col s12 m4 l4 offset-m4 offset-l4">
       <%= render partial: "partials/flight", object: @booking.flight %>
     </div>

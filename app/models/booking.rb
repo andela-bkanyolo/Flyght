@@ -2,7 +2,7 @@ class Booking < ApplicationRecord
   belongs_to :flight
   has_many :passengers, inverse_of: :booking
   accepts_nested_attributes_for :passengers
-  validates :reference, :presence => true
+  validates :reference, :price, :presence => true
   VALID_EMAIL = /\A[\w+\-.]+@[a-z\d\.]+[\w+]\.[a-z]+\z/i
   validates :email,
             presence: true,
