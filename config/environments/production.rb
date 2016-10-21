@@ -97,4 +97,8 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
 
+  # disable field with errors
+  ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
+    html_tag.html_safe
+  end
 end
