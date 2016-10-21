@@ -47,7 +47,7 @@ class BookingsController < ApplicationController
       if @booking
         redirect_to booking_path(@booking)
       else
-        redirect_to manage_path, alert: "Booking #{ref} does not exist"
+        redirect_to manage_bookings_path, alert: "Booking #{ref} does not exist"
       end
     end
   end
@@ -56,7 +56,8 @@ class BookingsController < ApplicationController
 
   def booking_params
     params.require(:booking)
-      .permit(:reference, :email, :price, :flight_id, passengers_attributes: [:name, :age, :passport, :phone])
+      .permit(:reference, :email, :price, :flight_id,
+        passengers_attributes: [:name, :age, :passport, :phone])
   end
 
   def generate_reference(flight_id)

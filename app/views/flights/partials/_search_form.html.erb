@@ -1,7 +1,7 @@
 <div class="row z-depth-3 hoverable" id="flight_form">
   <%= form_tag flights_path, method: 'get', id: "flight_form", remote: true do %>
 
-    <div class="col s12 l9">
+    <div class="col s12 l8">
       <div class="input-field">
         <%= select_tag(:origin, options_from_collection_for_select(@airports, :code, :formatted)) %>
         <%= label_tag("Origin") %>
@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <div class="col s12 l3">
+    <div class="col s12 l4">
       <div class="input-field">
         <%= select_tag(:passengers, options_for_select((1..10).to_a)) %>
         <%= label_tag("Passengers") %>
@@ -24,8 +24,8 @@
       </div>
     </div>
 
-    <div class="input-field col s12 l3 offset-l9">
-      <button id="search" class="btn waves-effect waves-light col s12 l12" type="submit" disable_with: "Searching...">Search
+    <div class="input-field col s12 l4 offset-l8">
+      <button id="search" class="btn waves-effect waves-light col s12 l12 z-depth-1" type="submit" disable_with: "Searching...">Search
         <i class="material-icons right">search</i>
       </button>
     </div>

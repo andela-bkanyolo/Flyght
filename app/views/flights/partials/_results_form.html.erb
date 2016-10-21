@@ -36,9 +36,13 @@
       <%= hidden_field_tag "passengers", @passengers %>
 
       <div class="input-field">
-        <button id="select" class="btn waves-effect waves-light col s12 l12" type="submit">Select Flight
-          <i class="material-icons right">select</i>
-        </button>
+        <div class="col s12 l4 offset-l4">
+          <button id="select"
+            class="btn waves-effect waves-light col s12 l12 z-depth-2"
+              type="submit">Select Flight
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
       </div>
 
     <% end %>

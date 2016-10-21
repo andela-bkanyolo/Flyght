@@ -8,11 +8,13 @@
 File.open("#{Rails.root}/public/seed/airports.csv") do |airports|
   airports.read.each_line do |airport|
     id,ident,type,nam,lat,longt,elevation_ft,
-    continent,countr,iso_region,cit,scheduled_service,gps_code,
+    cont,countr,iso_region,cit,scheduled_service,gps_code,
     iata,local_code,home_link,wikipedia_link,keywords = airport.chomp.split(",")
 
     type.gsub!(/\A"|"\Z/, '')
-    if type == "large_airport"
+    cont.gsub!(/\A"|"\Z/, '')
+
+    if type == "large_airport" && cont == "AF"
       #  to remove the quotes from the text:
       iata.gsub!(/\A"|"\Z/, '') if iata
       nam.gsub!(/\A"|"\Z/, '')
@@ -65,7 +67,7 @@ File.open("#{Rails.root}/public/seed/routes.dat") do |routes|
 
     dist = Geocoder::Calculations.distance_between([o.latitude, o.longitude],
       [d.latitude, d.longitude], :units => :km) if (o && d)
-    time = dist / 900 if dist
+    time = dist / 600 if dist
     a.routes.create({ origin: source, destination: dest, distance: dist, duration: time }) if (a && o && d)
   end
 end
