@@ -16,7 +16,7 @@ class BookingsController < ApplicationController
       BookingMailer.booking_confirmation(@booking).deliver_later
       redirect_to @booking
     else
-      @passengers = booking_params[:passengers_attributes].length
+      params[:passengers] = booking_params[:passengers_attributes].length
       render 'new'
     end
   end
@@ -50,7 +50,7 @@ class BookingsController < ApplicationController
 
   def booking_params
     params.require(:booking)
-      .permit(:email, :flight_id,
-        passengers_attributes: [:name, :age, :passport, :phone])
+          .permit(:email, :flight_id,
+          passengers_attributes: [:name, :age, :passport, :phone])
   end
 end
