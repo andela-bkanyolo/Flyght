@@ -17,21 +17,19 @@
 
 
     <h5 class="col s12 m12 l12 center-align">You've chosen to book the below flight.</h5>
-    <h5 class="col s12 m12 l12 center-align">Total price for <%= @passengers %> passenger(s): <%= @total %> USD</h5>
+    <h5 class="col s12 m12 l12 center-align">Total price for
+      <%= params[:passengers] %> passenger(s): <%= total_booking_cost(@booking.flight, params[:passengers]) %> USD</h5>
     <div class="col s12 m4 l4 offset-m4 offset-l4">
-      <%= render partial: "partials/flight", object: @flight %>
+      <%= render partial: "partials/flight", object: @booking.flight %>
     </div>
     <h5 class="col s12 m12 l12 center-align">Please fill in the details for all passengers below then click on "Book Flight" to book the flight.</h5>
-      <%= hidden_field_tag "booking[reference]", @reference %>
 
       <div class="input-field col s12 m12 l12">
         <%= f.text_field :email, type: :email %>
         <%= f.label :email, "Your email" %>
       </div>
 
-      <%= hidden_field_tag "booking[price]", @total %>
-
-      <%= hidden_field_tag "booking[flight_id]", @flight.id %>
+      <%= hidden_field_tag "booking[flight_id]", @booking.flight.id %>
 
       <ul>
         <%= f.fields_for :passengers do |passengers_form| %>

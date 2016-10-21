@@ -1,12 +1,8 @@
 class BookingsController < ApplicationController
   def new
-    flight_id = params[:flight]
-    @passengers = params[:passengers]
-    if flight_id
-      @flight =  Flight.find_by id: flight_id
-      @reference = generate_reference(flight_id)
-      @booking = Booking.new
-      @total = (@flight.price * @passengers.to_i).round(2)
+    flight = Flight.find_by id: params[:flight]
+    if flight
+      @booking = flight.bookings.new
       params[:passengers].to_i.times { @booking.passengers.build }
     else
       redirect_to root_path, alert: "No flight was selected."
@@ -56,12 +52,7 @@ class BookingsController < ApplicationController
 
   def booking_params
     params.require(:booking)
-      .permit(:reference, :email, :price, :flight_id,
+      .permit(:email, :flight_id,
         passengers_attributes: [:name, :age, :passport, :phone])
-  end
-
-  def generate_reference(flight_id)
-    flight = Flight.find_by id: flight_id
-    "#{SecureRandom.hex(3)}/#{flight.id}/#{flight.ref}".upcase
   end
 end
