@@ -2,7 +2,7 @@
 <div class="navbar-fixed">
     <nav class="light-blue darken-4">
         <div class="nav-wrapper row container">
-            <%= link_to "Flyght", root_url, class: "brand-logo" %>
+            <%= link_to "Flyght", root_path, class: "brand-logo", data: {turbolinks: false} %>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
               <li><%= link_to "Manage Booking", manage_bookings_path %></li>
             </ul>
