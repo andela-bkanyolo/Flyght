@@ -5,7 +5,7 @@
   <% if @booking.errors.any? %>
     <div id="error_explanation">
       <h2>
-        <%= pluralize(@booking.errors.count, "error") %> were found:
+        <%= pluralize(@booking.errors.count, "error") %> found:
       </h2>
       <ul>
         <% @booking.errors.full_messages.each do |msg| %>
@@ -22,7 +22,10 @@
     <div class="col s12 m4 l4 offset-m4 offset-l4">
       <%= render partial: "partials/flight", object: @booking.flight %>
     </div>
-    <h5 class="col s12 m12 l12 center-align">Please fill in the details for all passengers below then click on "Book Flight" to book the flight.</h5>
+    <h5 class="col s12 m12 l12 center-align">
+    Please fill in the details for all passengers
+    below then click on "Book Flight" to book the flight.
+    </h5>
 
       <div class="input-field col s12 m12 l12">
         <%= f.text_field :email, type: :email %>

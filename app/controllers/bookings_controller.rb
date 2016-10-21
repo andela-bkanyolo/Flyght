@@ -10,14 +10,12 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @flight = Flight.find_by id: booking_params[:flight_id]
-    @booking = Booking.new(booking_params)
+    flight = Flight.find_by id: booking_params[:flight_id]
+    @booking = flight.bookings.new(booking_params)
     if @booking.save
       BookingMailer.booking_confirmation(@booking).deliver_later
       redirect_to @booking
     else
-      @total = booking_params[:price]
-      @reference = booking_params[:reference]
       @passengers = booking_params[:passengers_attributes].length
       render 'new'
     end
