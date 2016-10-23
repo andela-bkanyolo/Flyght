@@ -8,7 +8,7 @@
       </div>
 
       <div class="input-field">
-        <%= select_tag(:destination, options_from_collection_for_select(@airports, :code, :formatted)) %>
+        <%= select_tag(:destination, options_from_collection_for_select(@airports, :code, :formatted), :prompt => "Anywhere") %>
         <%= label_tag("Destination") %>
       </div>
     </div>

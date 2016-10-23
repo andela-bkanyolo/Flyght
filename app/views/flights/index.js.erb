@@ -1,2 +1,9 @@
-$('#flashes').empty()
-$('#results').html("<%= j(render partial: 'flights/partials/results_form', locals: { flights: @flights, passengers: @passengers } ) %>");
+
+<% if @search.errors.any? %>
+  <% @search.errors.each do |error| %>
+    Materialize.toast('<%= error %>', 4000)
+  <% end %>
+<% else %>
+  $('#results')
+    .html("<%= j(render partial: 'flights/partials/results_form', locals: { search: @search } ) %>");
+<% end %>

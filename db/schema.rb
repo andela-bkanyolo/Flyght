@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 20161017073230) do
     t.string   "code"
     t.string   "name"
     t.string   "country"
-    t.float    "fee"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -31,7 +30,6 @@ ActiveRecord::Schema.define(version: 20161017073230) do
     t.string   "country"
     t.float    "latitude"
     t.float    "longitude"
-    t.float    "tax"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -47,14 +45,16 @@ ActiveRecord::Schema.define(version: 20161017073230) do
   end
 
   create_table "flights", force: :cascade do |t|
-    t.string   "ref"
+    t.string   "origin"
+    t.string   "destination"
     t.datetime "departure"
-    t.datetime "arrival"
+    t.float    "distance"
+    t.float    "duration"
     t.float    "price"
-    t.integer  "route_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["route_id"], name: "index_flights_on_route_id", using: :btree
+    t.integer  "airline_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["airline_id"], name: "index_flights_on_airline_id", using: :btree
   end
 
   create_table "passengers", force: :cascade do |t|
@@ -68,23 +68,11 @@ ActiveRecord::Schema.define(version: 20161017073230) do
     t.index ["booking_id"], name: "index_passengers_on_booking_id", using: :btree
   end
 
-  create_table "routes", force: :cascade do |t|
-    t.string   "origin"
-    t.string   "destination"
-    t.float    "distance"
-    t.float    "duration"
-    t.integer  "airline_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["airline_id"], name: "index_routes_on_airline_id", using: :btree
-  end
-
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_foreign_key "bookings", "flights"
-  add_foreign_key "flights", "routes"
-  add_foreign_key "routes", "airlines"
+  add_foreign_key "flights", "airlines"
 end

@@ -1,39 +1,21 @@
-
-  <% if flash[:airports] %>
-    <div id="error_explanation">
-      <h5>
-        <%= flash[:airports] %>
-      </h5>
-    </div>
-  <% elsif flash[:time] %>
-    <div id="error_explanation">
-      <h5>
-        <%= flash[:time] %>
-      </h5>
-    </div>
-  <% elsif flash[:flights] %>
-    <div id="error_explanation">
-      <h5>
-        <%= flash[:flights] %>
-      </h5>
-    </div>
-  <% else %>
     <%= form_tag new_booking_path, class: "row",
       method: 'get', id: "flight_view" do %>
 
-      <% @flights.each do |flight| %>
+      <% @date = @search.date %>
+      <% @search.flights.each do |flight| %>
+        <% @flight = flight %>
         <div class="col s12 m6 l4">
           <div>
             <input name="flight" value=<%= flight.id %> type="radio" id=<%= flight.id %> />
             <%= label_tag 'flight_label', "Book this flight (#{flight.price} USD)", for: flight.id %>
           </div>
           <div>
-            <%= render partial: "partials/flight", object: flight %>
+            <%= render partial: "partials/flight" %>
           </div>
         </div>
       <% end %>
 
-      <%= hidden_field_tag "passengers", @passengers %>
+      <%= hidden_field_tag "passengers", @search.passengers %>
 
       <div class="input-field">
         <div class="col s12 l4 offset-l8">
@@ -46,5 +28,4 @@
       </div>
 
     <% end %>
-  <% end %>
 
