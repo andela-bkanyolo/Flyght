@@ -1,7 +1,7 @@
 class Flight < ApplicationRecord
   attr_reader :origin_airport, :destination_airport
   validates :origin, :destination, :departure, :distance, :duration,
-    :price, :presence => true
+    :price, presence: true
   belongs_to :airline
   has_many :bookings
 

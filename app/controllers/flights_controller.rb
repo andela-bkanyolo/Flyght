@@ -11,7 +11,7 @@ class FlightsController < ApplicationController
     date = params[:date]
     @search = FlightSearch.new(origin, destination, passengers, date)
     respond_to do |format|
-      format.js   {}
+      format.js {}
     end
   end
 

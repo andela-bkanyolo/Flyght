@@ -4,9 +4,9 @@
 
   <% if @booking.errors.any? %>
     <div id="error_explanation">
-      <h2>
+      <h4>
         <%= pluralize(@booking.errors.count, "error") %> found:
-      </h2>
+      </h4>
       <ul>
         <% @booking.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
@@ -63,7 +63,7 @@
       </ul>
 
       <button id="search" class="btn waves-effect waves-light col s12 m12 l12" type="submit">Book Flight
-        <i class="material-icons right">send</i>
+        <i class="material-icons right">save</i>
       </button>
 
   </div>
