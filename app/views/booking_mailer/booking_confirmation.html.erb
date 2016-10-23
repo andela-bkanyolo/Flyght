@@ -9,19 +9,19 @@
       Confirmation Number: <%= @booking.reference %><br>
     </p>
     <p>
-      Flight Number: <%= @booking.flight.ref %><br>
+      Flight Number: <%= @booking.flight.number %><br>
     </p>
     <p>
-      Departure Airport: <%= @booking.flight.route.origin %><br>
+      Departure Airport: <%= @booking.flight.origin_airport.name %><br>
     </p>
     <p>
-      Departure: <%= @booking.flight.departure.strftime '%Y-%m-%d %H:%M' %><br>
+      Departure: <%= @booking.flight.departure_date(@booking.departure).strftime '%Y-%m-%d %H:%M' %><br>
     </p>
     <p>
-      Arrival Airport: <%= @booking.flight.route.destination %><br>
+      Arrival Airport: <%= @booking.flight.destination_airport.name %><br>
     </p>
     <p>
-      Arrival: <%= @booking.flight.arrival.strftime '%Y-%m-%d %H:%M' %><br>
+      Arrival: <%= @booking.flight.arrival_date(@booking.departure).strftime '%Y-%m-%d %H:%M' %><br>
     </p>
     <p>
       Price: <%= @booking.flight.price %><br>

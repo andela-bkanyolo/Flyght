@@ -17,6 +17,7 @@ class BookingsController < ApplicationController
       redirect_to @booking
     else
       params[:passengers] = booking_params[:passengers_attributes].length
+      params[:departure] = booking_params[:departure]
       render 'new'
     end
   end
@@ -50,7 +51,7 @@ class BookingsController < ApplicationController
 
   def booking_params
     params.require(:booking)
-          .permit(:email, :flight_id,
+          .permit(:email, :departure, :flight_id,
           passengers_attributes: [:name, :age, :passport, :phone])
   end
 end

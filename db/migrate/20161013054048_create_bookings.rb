@@ -4,6 +4,7 @@ class CreateBookings < ActiveRecord::Migration[5.0]
       t.string :reference
       t.string :email
       t.float :price
+      t.date :departure
       t.references :flight, index: true, foreign_key: true
 
       t.timestamps

@@ -6,23 +6,23 @@ Confirmation Number: <%= @booking.reference %>
 
 ===============================================
 
-Flight Number: <%= @booking.flight.ref %>
+Flight Number: <%= @booking.flight.number %>
 
 ===============================================
 
-Departure Airport: <%= @booking.flight.route.origin %>
+Departure Airport: <%= @booking.flight.origin_airport.name %>
 
 ===============================================
 
-Departure: <%= @booking.flight.departure.strftime '%Y-%m-%d %H:%M' %>
+Departure: <%= @booking.flight.departure_date(@booking.departure).strftime '%Y-%m-%d %H:%M' %>
 
 ===============================================
 
-Arrival Airport: <%= @booking.flight.route.destination %>
+Arrival Airport: <%= @booking.flight.destination_airport.name %>
 
 ===============================================
 
-Arrival: <%= @booking.flight.arrival.strftime '%Y-%m-%d %H:%M' %>
+Arrival: <%= @booking.flight.arrival_date(@booking.departure).strftime '%Y-%m-%d %H:%M' %>
 
 ===============================================
 

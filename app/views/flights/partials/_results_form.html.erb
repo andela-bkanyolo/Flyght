@@ -16,6 +16,7 @@
       <% end %>
 
       <%= hidden_field_tag "passengers", @search.passengers %>
+      <%= hidden_field_tag "departure", @search.date.strftime("%Y-%m-%d") %>
 
       <div class="input-field">
         <div class="col s12 l4 offset-l8">

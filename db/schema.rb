@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20161017073230) do
     t.string   "reference"
     t.string   "email"
     t.float    "price"
+    t.date     "departure"
     t.integer  "flight_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

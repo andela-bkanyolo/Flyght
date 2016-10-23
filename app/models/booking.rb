@@ -4,7 +4,7 @@ class Booking < ApplicationRecord
   belongs_to :flight
   has_many :passengers, inverse_of: :booking
   accepts_nested_attributes_for :passengers
-  validates :reference, :price, :presence => true
+  validates :reference, :price, :departure, :presence => true
   VALID_EMAIL = /\A[\w+\-.]+@[a-z\d\.]+[\w+]\.[a-z]+\z/i
   validates :email,
             presence: true,
@@ -14,7 +14,7 @@ class Booking < ApplicationRecord
   before_create :generate_reference, :set_price
 
   def generate_reference
-    self.reference = "#{SecureRandom.hex(3)}/#{flight.id}/#{flight.ref}".upcase
+    self.reference = "#{SecureRandom.hex(3)}/#{flight.id}/#{flight.number}".upcase
   end
 
   def set_price
