@@ -1,7 +1,5 @@
-<div class="container" id="flashes">
-  <div class="row">
-    <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, class: name, id: name %>
-    <% end %>
-  </div>
-</div>
+<% flash.each do |name, msg| %>
+  <script type="text/javascript">
+    Materialize.toast('<%= msg %>', 4000);
+  </script>
+<% end %>

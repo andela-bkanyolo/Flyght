@@ -1,4 +1,4 @@
-
+$('#results').empty()
 <% if @search.errors.any? %>
   <% @search.errors.each do |error| %>
     Materialize.toast('<%= error %>', 4000)
