@@ -2,6 +2,7 @@ class Booking < ApplicationRecord
   include BookingsHelper
 
   belongs_to :flight
+  belongs_to :user, optional: true
   has_many :passengers, inverse_of: :booking
   accepts_nested_attributes_for :passengers
   validates :reference, :price, :departure, presence: true

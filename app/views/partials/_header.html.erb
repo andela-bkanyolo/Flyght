@@ -6,7 +6,7 @@
             <ul id="nav-mobile" class="right hide-on-med-and-down">
               <li><%= link_to "Manage Booking", manage_bookings_path %></li>
               <% if current_user %>
-                <li><%= link_to "Past Bookings", manage_bookings_path %></li>
+                <li><%= link_to "Past Bookings", bookings_user_path(current_user) %></li>
                 <li><%= link_to "Sign Out", logout_path, method: :delete %></li>
               <% else %>
                 <li><%= link_to "Sign Up", signup_path %></li>
