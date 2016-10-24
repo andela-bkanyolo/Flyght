@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :bookings, except: [:index] do
     collection do
       get "manage"
+      get "find"
     end
   end
   get 'signup'=> 'users#new'

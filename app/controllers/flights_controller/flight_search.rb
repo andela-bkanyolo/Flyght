@@ -35,9 +35,7 @@ class FlightsController
 
     def get_flights(origin, destination)
       @flights = Flight.from_to(origin, destination)
-      if @flights.empty?
-        @errors << "No flights available for this route."
-      end
+      @errors << "No flights available for this route." if @flights.empty?
     end
   end
 end

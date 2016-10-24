@@ -4,7 +4,7 @@
         <div class="nav-wrapper row container">
             <%= link_to "Flyght", root_path, class: "brand-logo", data: {turbolinks: false} %>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-              <li><%= link_to "Manage Booking", manage_bookings_path %></li>
+              <li><%= link_to "Manage Booking", find_bookings_path %></li>
               <% if current_user %>
                 <li><%= link_to "Past Bookings", bookings_user_path(current_user) %></li>
                 <li><%= link_to "Sign Out", logout_path, method: :delete %></li>

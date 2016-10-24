@@ -14,7 +14,7 @@ class BookingsController < ApplicationController
     @booking = flight.bookings.new(booking_params)
     if @booking.save
       BookingMailer.booking_confirmation(@booking).deliver_later
-      redirect_to @booking
+      redirect_to @booking, alert: "Booking successfully created."
     else
       params[:passengers] = booking_params[:passengers_attributes].length
       params[:departure] = booking_params[:departure]
@@ -34,7 +34,7 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     if @booking.update(booking_params)
       BookingMailer.booking_confirmation(@booking).deliver_later
-      redirect_to @booking
+      redirect_to @booking, alert: "Booking updated successfully."
     else
       params[:passengers] = booking_params[:passengers_attributes].length
       params[:departure] = booking_params[:departure]
@@ -45,22 +45,19 @@ class BookingsController < ApplicationController
   def destroy
     @booking = Booking.find(params[:id])
     @booking.destroy
-    redirect_to bookings_user_path(current_user)
+    redirect_to bookings_user_path(current_user), alert: "Booking deleted!"
   end
 
   def manage
-    ref = params[:ref]
-    if ref
-      @booking = Booking.find_by reference: ref
-      if @booking
-        if current_user
-          redirect_to edit_booking_path(@booking)
-        else
-          redirect_to booking_path(@booking)
-        end
+    @booking = Booking.find_by reference: params[:ref]
+    if @booking
+      if current_user
+        redirect_to edit_booking_path(@booking), alert: "Booking found."
       else
-        redirect_to manage_bookings_path, alert: "Booking #{ref} does not exist"
+        redirect_to @booking, alert: "Booking found."
       end
+    else
+      redirect_to find_bookings_path, alert: "Booking does not exist."
     end
   end
 
