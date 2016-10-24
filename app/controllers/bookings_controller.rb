@@ -27,9 +27,19 @@ class BookingsController < ApplicationController
   end
 
   def edit
+    @booking = Booking.find(params[:id])
   end
 
   def update
+    @booking = Booking.find(params[:id])
+    if @booking.update(booking_params)
+      BookingMailer.booking_confirmation(@Booking).deliver_later
+      redirect_to @booking
+    else
+      params[:passengers] = booking_params[:passengers_attributes].length
+      params[:departure] = booking_params[:departure]
+      render 'edit'
+    end
   end
 
   def destroy
@@ -52,6 +62,6 @@ class BookingsController < ApplicationController
   def booking_params
     params.require(:booking)
           .permit(:email, :departure, :flight_id, :user_id,
-          passengers_attributes: [:name, :age, :passport, :phone])
+          passengers_attributes: [:id, :name, :age, :passport, :phone, :_destroy])
   end
 end

@@ -1,5 +1,5 @@
 class FlightsController < ApplicationController
-  before_action :get_airports
+  before_action :get_airports, only: [:home]
 
   def home
   end

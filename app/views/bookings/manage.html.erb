@@ -1,15 +1,19 @@
-<%= form_tag manage_bookings_path, method: 'get', id: "booking_form" do %>
 <div class="container">
-  <div class="row">
-    <div class="input-field col s12 m12 l4 offset-l4">
-      <%= label_tag :ref, "Confirmation Number" %>
-      <%= text_field_tag :ref %>
-    </div>
-    <div class="input-field col s12 m12 l4 offset-l4">
-      <button id="search" class="btn waves-effect waves-light col s12 l12" type="submit">Search
-      <i class="material-icons right">search</i>
-      </button>
-    </div>
-  </div>
+   <div class="row">
+      <%= form_tag manage_bookings_path, method: 'get', id: "booking_form", class: "col s12" do %>
+      <div id="manage" class="col s12 m6 l6 offset-m3 offset-l3 z-depth-2">
+         <h4 class="row center-align">Manage Booking</h4>
+         <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">code</i>
+               <%= label_tag :ref, "Confirmation Number" %>
+               <%= text_field_tag :ref %>
+            </div>
+               <button id="search" class="btn waves-effect waves-light col s12 m4 l4 offset-m4 offset-l4" type="submit">Search
+               <i class="material-icons right">search</i>
+               </button>
+         </div>
+      </div>
+      <% end %>
+   </div>
 </div>
-<% end %>

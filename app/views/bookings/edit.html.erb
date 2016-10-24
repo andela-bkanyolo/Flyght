@@ -1,0 +1,66 @@
+<%= form_for :booking, url: booking_path(@booking), method: :patch do |f| %>
+<div class="container">
+  <div class="row">
+
+  <% if @booking.errors.any? %>
+    <div id="error_explanation">
+      <h4>
+        <%= pluralize(@booking.errors.count, "error") %> found:
+      </h4>
+      <ul>
+        <% @booking.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+    <h5 class="col s12 m12 l12 center-align">You're editing the below booking</h5>
+    <h5 class="col s12 m12 l12 center-align">Total price for
+      <%= @booking.passengers.size %> passenger(s): <%= @booking.price %> USD</h5>
+    <% @flight = @booking.flight %>
+    <% @date = @booking.departure %>
+    <div class="col s12 m4 l4 offset-m4 offset-l4">
+      <%= render partial: "partials/flight" %>
+    </div>
+    <h5 class="col s12 m12 l12 center-align">
+      You can add and remove passengers below for your booking.
+    </h5>
+
+      <%= hidden_field_tag "booking[departure]", @booking.departure %>
+      <%= hidden_field_tag "booking[flight_id]", @booking.flight.id %>
+      <%= hidden_field_tag "booking[user_id]", current_user.id %>
+
+      <ul>
+        <%= f.fields_for :passengers do |passengers_form| %>
+        <li>
+          <div class="col s12 m6 l4" id="passenger">
+            <div class="input-field">
+              <%= passengers_form.label :name, "Full Names" %>
+              <%= passengers_form.text_field :name %>
+            </div>
+            <div class="input-field">
+              <%= passengers_form.label :age %>
+              <%= passengers_form.text_field :age %>
+            </div>
+            <div class="input-field">
+              <%= passengers_form.label :passport, "Passport Number" %>
+              <%= passengers_form.text_field :passport %>
+            </div>
+            <div class="input-field">
+              <%= passengers_form.label :phone, "Phone Number" %>
+              <%= passengers_form.text_field :phone %>
+            </div>
+          </div>
+        </li>
+        <% end %>
+      </ul>
+
+      <button id="search" class="btn waves-effect waves-light col s12 m12 l12" type="submit">Update Booking
+        <i class="material-icons right">save</i>
+      </button>
+
+  </div>
+</div>
+<% end %>
