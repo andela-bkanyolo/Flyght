@@ -51,7 +51,7 @@ class BookingsController < ApplicationController
   def manage
     @booking = Booking.find_by reference: params[:ref].strip
     if @booking
-      if current_user
+      if can_edit(@booking)
         redirect_to edit_booking_path(@booking), alert: "Booking found."
       else
         redirect_to @booking, alert: "Booking found."
@@ -62,6 +62,10 @@ class BookingsController < ApplicationController
   end
 
   private
+
+  def can_edit(booking)
+    current_user && current_user.email == booking.email
+  end
 
   def booking_params
     params.require(:booking)
