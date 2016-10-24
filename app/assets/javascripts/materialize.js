@@ -6,4 +6,6 @@ $(document).ready(function() {
     height: 650
   });
 
+  $(".button-collapse").sideNav();
+
 });
