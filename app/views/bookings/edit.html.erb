@@ -1,4 +1,4 @@
-<%= form_for :booking, url: booking_path(@booking), method: :patch do |f| %>
+<%= form_for (@booking) do |f| %>
 <div class="container">
   <div class="row">
 
@@ -25,7 +25,7 @@
       <%= render partial: "partials/flight" %>
     </div>
     <h5 class="col s12 m12 l12 center-align">
-      You can add and remove passengers below for your booking.
+      You can edit passenger information for your booking below
     </h5>
 
       <%= hidden_field_tag "booking[departure]", @booking.departure %>
@@ -37,19 +37,19 @@
         <li>
           <div class="col s12 m6 l4" id="passenger">
             <div class="input-field">
-              <%= passengers_form.label :name, "Full Names" %>
+              <%= passengers_form.label :name, "Full Names", class: "active" %>
               <%= passengers_form.text_field :name %>
             </div>
             <div class="input-field">
-              <%= passengers_form.label :age %>
+              <%= passengers_form.label :age, class: "active" %>
               <%= passengers_form.text_field :age %>
             </div>
             <div class="input-field">
-              <%= passengers_form.label :passport, "Passport Number" %>
+              <%= passengers_form.label :passport, "Passport Number", class: "active" %>
               <%= passengers_form.text_field :passport %>
             </div>
             <div class="input-field">
-              <%= passengers_form.label :phone, "Phone Number" %>
+              <%= passengers_form.label :phone, "Phone Number", class: "active" %>
               <%= passengers_form.text_field :phone %>
             </div>
           </div>

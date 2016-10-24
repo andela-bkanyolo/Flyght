@@ -33,7 +33,7 @@ class BookingsController < ApplicationController
   def update
     @booking = Booking.find(params[:id])
     if @booking.update(booking_params)
-      BookingMailer.booking_confirmation(@Booking).deliver_later
+      BookingMailer.booking_confirmation(@booking).deliver_later
       redirect_to @booking
     else
       params[:passengers] = booking_params[:passengers_attributes].length
@@ -50,7 +50,11 @@ class BookingsController < ApplicationController
     if ref
       @booking = Booking.find_by reference: ref
       if @booking
-        redirect_to booking_path(@booking)
+        if current_user
+          redirect_to edit_booking_path(@booking)
+        else
+          redirect_to booking_path(@booking)
+        end
       else
         redirect_to manage_bookings_path, alert: "Booking #{ref} does not exist"
       end
