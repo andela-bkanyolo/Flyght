@@ -49,7 +49,7 @@ class BookingsController < ApplicationController
   end
 
   def manage
-    @booking = Booking.find_by reference: params[:ref]
+    @booking = Booking.find_by reference: params[:ref].strip
     if @booking
       if current_user
         redirect_to edit_booking_path(@booking), alert: "Booking found."
