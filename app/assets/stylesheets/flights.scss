@@ -12,6 +12,9 @@
 
 #flight_form {
   margin-top: 40px;
+  border: 3px solid gray;
+  border-radius: 25px;
+  padding-top: 10px;
 }
 
 #search {
@@ -31,3 +34,9 @@
  padding: em(15px);
 }
 
+#radios {
+  margin-top: 10px;
+  padding: 5px;
+  border: 3px solid gray;
+  border-radius: 25px;
+}

@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def bookings
-    @bookings = current_user.bookings
+    @bookings = current_user.bookings.order(updated_at: :desc)
   end
 
   private

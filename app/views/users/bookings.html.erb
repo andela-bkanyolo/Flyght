@@ -2,10 +2,10 @@
   <div class="row">
 
     <% if @bookings.empty? %>
-      <h5 class="center-align">You have not made any bookings with Flyght yet</h5>
+      <h5 class="center-align z-depth-2 rounded-header col s12 m6 l4 offset-m3 offset-l4">You have not made any bookings with Flyght yet</h5>
     <% else %>
 
-    <h5 class="col s12 m12 l12 center-align">Here are all your past bookings</h5>
+    <h4 class="col s12 m6 l4 center-align rounded-header z-depth-2 offset-m3 offset-l4">Here are your past bookings</h4>
     <table class="striped col s12 m12 l12 center-align">
       <thead>
         <tr>
@@ -27,9 +27,13 @@
             <td><%= booking.departure.strftime '%Y-%m-%d' %></td>
             <td><%= "#{booking.price} USD" %></td>
             <td><%= booking.updated_at.strftime '%Y-%m-%d %H:%M' %></td>
-            <td><%= link_to "View Booking", booking %></td>
-            <td><%= link_to "Edit Booking", edit_booking_path(booking) %></td>
-            <td><%= link_to "Cancel Booking", booking_path(booking), method: :delete %></td>
+            <td><%= link_to "View", booking %></td>
+            <td><%= link_to "Edit", edit_booking_path(booking) %></td>
+            <% if booking_expired(booking) %>
+              <td>EXPIRED</td>
+            <% else %>
+              <td><%= link_to "Cancel Booking", booking_path(booking), method: :delete, data: { confirm: "Are you sure you want to cancel this boooking?" }%></td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>

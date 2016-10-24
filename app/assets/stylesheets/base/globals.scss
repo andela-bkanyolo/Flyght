@@ -43,7 +43,9 @@ main {
   background: #FFFFFF;
 }
 
-#radios {
-  margin-top: 10px;
+.rounded-header {
+  margin-top: 20px;
   padding: 5px;
+  border: 3px solid gray;
+  border-radius: 25px;
 }
