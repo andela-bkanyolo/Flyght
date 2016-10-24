@@ -19,3 +19,22 @@ main {
 .brand-logo {
   font-family: 'Permanent Marker', cursive;
 }
+
+.overlay {
+  background-image: url(clouds.jpg);
+  background-size: cover;
+}
+
+#backgrounds {
+  background: #000;
+  opacity: 0.3;
+}
+
+.white-back {
+  background: #FFFFFF;
+}
+
+#radios {
+  margin-top: 10px;
+  padding: 5px;
+}

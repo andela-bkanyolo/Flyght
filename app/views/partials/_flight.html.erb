@@ -1,17 +1,17 @@
 
-  <div class="card small horizontal z-depth-2">
+  <div class="card small horizontal z-depth-2 white-back">
     <div class="card-stacked">
       <div class="card-content">
-        <div class="col s4 m4 l4 center-align">
+        <div class="col s4 m4 l4 center-align light-blue-text text-darken-4">
           <h5 class="row"><%= @flight.origin %></h5>
           <h6 class="row"><%= @flight.departure.strftime "%H:%M" %></h6>
           <h6 class="row"><%= @flight.origin_airport.city %></h6>
         </div>
         <div class="col s4 m4 l4 center-align">
-          <i class="row material-icons center medium">flight</i>
-          <h6 class="row"><%= @date.strftime "%Y-%m-%d" %></h6>
+          <i class="row material-icons center medium teal-text text-lighten-2">flight</i>
+          <h6 class="row light-blue-text text-darken-4"><%= @date.strftime "%Y-%m-%d" %></h6>
         </div>
-        <div class="col s4 m4 l4 center-align">
+        <div class="col s4 m4 l4 center-align light-blue-text text-darken-4">
           <h5 class="row"><%= @flight.destination %></h5>
           <h6 class="row"><%= @flight.arrival_date(@date).strftime "%H:%M" %></h6>
           <h6 class="row"><%= @flight.destination_airport.city %></h6>
@@ -20,7 +20,7 @@
       <div class="card-content center-align">
         <h6 class="row"><%= @flight.airline.name %></h6>
         <h6 class="row">Flight Number: <%= @flight.number %></h6>
-        <h4 class="row"><%= "#{@flight.price} USD" %></h4>
+        <h5 class="row teal-text lighten-2-text"><%= "#{@flight.price} USD" %></h5>
       </div>
     </div>
   </div>
