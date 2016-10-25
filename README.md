@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/andela-bkanyolo/flyght.svg?branch=develop)](https://travis-ci.org/andela-bkanyolo/flyght)
-[![Coverage Status](https://coveralls.io/repos/github/andela-bkanyolo/flyght/badge.svg?branch=develop)](https://coveralls.io/github/andela-bkanyolo/flyght?branch=develop)[![Code Climate](https://codeclimate.com/github/andela-bkanyolo/flyght/badges/gpa.svg)](https://codeclimate.com/github/andela-bkanyolo/flyght)
+[![Coverage Status](https://coveralls.io/repos/github/andela-bkanyolo/flyght/badge.svg?branch=develop)](https://coveralls.io/github/andela-bkanyolo/flyght?branch=develop)
+[![Code Climate](https://codeclimate.com/github/andela-bkanyolo/flyght/badges/gpa.svg)](https://codeclimate.com/github/andela-bkanyolo/flyght)
 [![Issue Count](https://codeclimate.com/github/andela-bkanyolo/flyght/badges/issue_count.svg)](https://codeclimate.com/github/andela-bkanyolo/flyght)
 # FLYGHT
 <img width="1440" alt="screen shot 2016-10-25 at 11 26 25" src="https://cloud.githubusercontent.com/assets/21033429/19678340/0a1baab6-9aa6-11e6-90fa-b08e999fdee9.png">
