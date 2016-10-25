@@ -42,6 +42,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rails-controller-testing'
   gem 'faker'
+  gem "codeclimate-test-reporter", group: :test, require: nil
 end
 
 group :test do
