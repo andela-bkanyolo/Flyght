@@ -14,20 +14,28 @@ Flight is a flight management application that allows you to search for flights 
 
   Users who have not created an account on Flyght can do the following:
 
-    * Find flights by Origin, Destination and Date.
-    * Specify number of passengers for travel
-    * If any flights form that route exist, they can then select the flight for booking.
-    * After specifying a valid email and booking, they will receive an email confirmation
-    * They can view a booking by searching for its confirmation number
-    * Sign up to become registered users
+```Find flights by Origin, Destination and Date.```
+
+```Specify number of passengers for travel```
+
+```If any flights form that route exist, they can then select the flight for booking.```
+
+```After specifying a valid email and booking, they will receive an email confirmation```
+
+```They can view a booking by searching for its confirmation number```
+
+```Sign up to become registered users```
 
 ### Registered users
 
   In addition to all features for unregistered users, registered users can also:
 
-    * List all their past bookings
-    * Edit a past booking
-    * Cancel a past booking, if it has not already departed
+```List all their past bookings```
+
+```Edit a past booking```
+
+```Cancel a past booking, if it has not already departed```
+
 
 ## Local Set Up
 
