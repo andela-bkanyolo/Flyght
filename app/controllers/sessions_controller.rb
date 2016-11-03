@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_path, notice: "Welcome back, #{@user.full_name}"
     else
-      redirect_to login_path, alert: "Incorrect email or password."
+      redirect_to login_path, alert: 'Incorrect email or password.'
     end
   end
 

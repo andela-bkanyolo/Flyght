@@ -1,11 +1,15 @@
 class BookingsController < ApplicationController
+  before_action :find_booking_by_code, only: [:manage]
+  before_action :find_booking_by_id, only: [:show, :edit, :update, :destroy]
+
   def new
     flight = Flight.find_by id: params[:flight]
     if flight
       @booking = flight.bookings.new
-      params[:passengers].to_i.times { @booking.passengers.build }
+      @booking.departure = params[:departure]
+      params[:passengers_count].to_i.times { @booking.passengers.build }
     else
-      redirect_to root_path, alert: "No flight was selected."
+      redirect_to root_path, alert: 'No flight was selected.'
     end
   end
 
@@ -14,54 +18,54 @@ class BookingsController < ApplicationController
     @booking = flight.bookings.new(booking_params)
     if @booking.save
       BookingMailer.booking_confirmation(@booking).deliver_later
-      redirect_to @booking, alert: "Booking successfully created."
+      redirect_to @booking, alert: 'Booking successfully created.'
     else
-      params[:passengers] = booking_params[:passengers_attributes].length
-      params[:departure] = booking_params[:departure]
       render 'new'
     end
   end
 
   def show
-    @booking = Booking.find(params[:id])
   end
 
   def edit
-    @booking = Booking.find(params[:id])
   end
 
   def update
-    @booking = Booking.find(params[:id])
     if @booking.update(booking_params)
       BookingMailer.booking_confirmation(@booking).deliver_later
-      redirect_to @booking, alert: "Booking updated successfully."
+      redirect_to @booking, alert: 'Booking updated successfully.'
     else
-      params[:passengers] = booking_params[:passengers_attributes].length
-      params[:departure] = booking_params[:departure]
       render 'edit'
     end
   end
 
   def destroy
-    @booking = Booking.find(params[:id])
     @booking.destroy
-    redirect_to bookings_user_path(current_user), alert: "Booking deleted!"
+    redirect_to bookings_user_path(current_user), alert: 'Booking deleted!'
   end
 
   def manage
-    @booking = Booking.find_by reference: params[:ref].strip
-    if @booking
-      if can_edit(@booking)
-        redirect_to edit_booking_path(@booking), alert: "Booking found."
-      else
-        redirect_to @booking, alert: "Booking found."
-      end
+    if can_edit(@booking)
+      redirect_to edit_booking_path(@booking), alert: 'Booking found.'
     else
-      redirect_to find_bookings_path, alert: "Booking does not exist."
+      redirect_to @booking, alert: 'Booking found.'
     end
   end
 
   private
+
+  def find_booking_by_id
+    @booking = Booking.find(params[:id])
+  end
+
+  def find_booking_by_code
+    @booking = Booking.find_by reference: params[:ref].strip
+    @booking || record_not_found
+  end
+
+  def record_not_found
+    redirect_to find_bookings_path, alert: 'Booking was not found'
+  end
 
   def can_edit(booking)
     current_user && current_user.email == booking.email
@@ -70,6 +74,6 @@ class BookingsController < ApplicationController
   def booking_params
     params.require(:booking)
           .permit(:email, :departure, :flight_id, :user_id,
-          passengers_attributes: [:id, :name, :age, :passport, :phone, :_destroy])
+                  passengers_attributes: [:id, :name, :age, :passport, :phone])
   end
 end

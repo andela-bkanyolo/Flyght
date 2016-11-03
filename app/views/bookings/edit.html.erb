@@ -19,17 +19,15 @@
     <h5 class="col s12 m12 l12 center-align">You're editing the below booking</h5>
     <h5 class="col s12 m12 l12 center-align">Total price for
       <%= @booking.passengers.size %> passenger(s): <%= @booking.price %> USD</h5>
-    <% @flight = @booking.flight %>
-    <% @date = @booking.departure %>
     <div class="col s12 m4 l4 offset-m4 offset-l4">
-      <%= render partial: "partials/flight" %>
+      <%= render partial: "partials/flight", locals: { flight: @booking.flight, date: @booking.departure } %>
     </div>
     <h5 class="col s12 m12 l12 center-align">
       You can edit passenger information for your booking below
     </h5>
 
       <%= hidden_field_tag "booking[departure]", @booking.departure %>
-      <%= hidden_field_tag "booking[flight_id]", @booking.flight.id %>
+      <%= hidden_field_tag "booking[flight_id]", @booking.flight_id %>
       <%= hidden_field_tag "booking[user_id]", current_user.id %>
 
       <ul>
