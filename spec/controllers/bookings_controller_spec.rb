@@ -51,6 +51,59 @@ RSpec.describe BookingsController, type: :controller do
     end
   end
 
+  describe '#create' do
+    let(:user) { create(:user) }
+    let(:flight) { create(:flight) }
+
+    context 'when parameters are valid' do
+      before(:each) do
+        post :create, params: {
+          booking: attributes_for(:booking,
+                                  email: user.email,
+                                  departure: flight.departure,
+                                  flight_id: flight.id,
+                                  user_id: user.id,
+                                  passengers: attributes_for(:passenger))
+        }
+      end
+
+      it 'creates new booking' do
+        expect { subject }.to change(Booking, :count).by(1)
+      end
+
+      it 'sets the flash' do
+        expect(flash[:alert]).to eq 'Your booking was successfully created.'
+      end
+
+      it 'returns a status code of 302' do
+        expect(response.status).to eq 302
+      end
+
+      it 'redirects to the show view' do
+        expect(response).to redirect_to(assigns(:booking))
+      end
+    end
+
+    context 'when parameters are invalid' do
+      before(:each) do
+        post :create, params: {
+          booking: attributes_for(:booking,
+                                  email: nil,
+                                  flight_id: flight.id,
+                                  passengers: attributes_for(:passenger))
+        }
+      end
+
+      it 'does not create new booking' do
+        expect(assigns[:booking].errors[:email]).to include "can't be blank"
+      end
+
+      it 'renders the new template' do
+        expect(response).to render_template('new')
+      end
+    end
+  end
+
   describe '#edit' do
     before(:each) { get :edit, params: { id: booking.id } }
 
