@@ -10,5 +10,4 @@ RSpec.describe Passenger, type: :model do
     should validate_numericality_of(:age).is_greater_than_or_equal_to(0)
   end
   it { is_expected.to validate_presence_of :age }
-
 end

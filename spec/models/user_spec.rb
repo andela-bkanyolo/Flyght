@@ -19,9 +19,9 @@ RSpec.describe User, type: :model do
 
   describe '.full name' do
     it 'should return formatted full name' do
-      user = create(:user, first_name: "ben", last_name: "kanyolo")
+      user = create(:user, first_name: 'ben', last_name: 'kanyolo')
 
-      expect(user.full_name).to eq "Ben Kanyolo"
+      expect(user.full_name).to eq 'Ben Kanyolo'
     end
   end
 end

@@ -17,4 +17,11 @@ RSpec.describe Booking, type: :model do
     end
   end
 
+  describe 'price' do
+    it 'total price should depend on number of passengers' do
+      booking = create(:booking)
+      price = booking.passengers.size * booking.flight.price
+      expect(booking.price).to eq price
+    end
+  end
 end
