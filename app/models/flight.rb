@@ -1,6 +1,6 @@
 class Flight < ApplicationRecord
-  validates :origin, :destination, :departure, :distance, :duration,
-            :price, presence: true
+  validates :origin, :destination, :departure, :distance, :duration, :price,
+            presence: true
   belongs_to :airline
   has_many :bookings
 

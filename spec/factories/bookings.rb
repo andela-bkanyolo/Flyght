@@ -5,5 +5,6 @@ FactoryGirl.define do
     price Faker::Number.positive
     departure Faker::Date.forward(23)
     flight
+    user
   end
 end

@@ -5,9 +5,9 @@ $('#results').empty()
     Materialize.toast('<%= error %>', 4000, 'rounded');
   <% end %>
 <% elsif @flights.empty? %>
-  Materialize.toast('No flights available for this route.', 4000, 'rounded');
+  Materialize.toast('<%= no_flights_found %>', 4000, 'rounded');
 <% else %>
-  Materialize.toast('<%= "#{pluralize(@flights.count, "flight")} found" %>', 4000, 'rounded');
+  Materialize.toast('<%= flights_found(@flights.count) %>', 4000, 'rounded');
   $('#results')
     .html("<%= j(render partial: 'flights/partials/results_form', locals: { flights: @flights } ) %>");
 <% end %>
