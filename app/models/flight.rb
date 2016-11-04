@@ -5,11 +5,11 @@ class Flight < ApplicationRecord
   has_many :bookings
 
   def origin_airport
-    Airport.find_by code: origin
+    Airport.find_by(code: origin)
   end
 
   def destination_airport
-    Airport.find_by code: destination
+    Airport.find_by(code: destination)
   end
 
   def number

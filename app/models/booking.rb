@@ -2,8 +2,9 @@ class Booking < ApplicationRecord
   include BookingsHelper
 
   belongs_to :flight
-  belongs_to :user, optional: true
-  has_many :passengers, inverse_of: :booking, dependent: :destroy
+  belongs_to :user
+  has_many :passengers, inverse_of: :booking,
+                        dependent: :destroy
   accepts_nested_attributes_for :passengers, allow_destroy: true
   validates :reference, :price, :departure, presence: true
   validates :email,
@@ -14,7 +15,8 @@ class Booking < ApplicationRecord
   before_create :generate_reference, :set_price
 
   def generate_reference
-    self.reference = "#{SecureRandom.hex(3)}/#{flight.id}/#{flight.number}".upcase
+    self.reference =
+      "#{SecureRandom.hex(3)}/#{flight.id}/#{flight.number}".upcase
   end
 
   def set_price

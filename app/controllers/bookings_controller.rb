@@ -3,7 +3,7 @@ class BookingsController < ApplicationController
   before_action :find_booking_by_id, only: [:show, :edit, :update, :destroy]
 
   def new
-    flight = Flight.find_by id: params[:flight]
+    flight = Flight.find_by(id: params[:flight])
     if flight
       @booking = flight.bookings.new
       @booking.departure = params[:departure]
@@ -14,7 +14,7 @@ class BookingsController < ApplicationController
   end
 
   def create
-    flight = Flight.find_by id: booking_params[:flight_id]
+    flight = Flight.find_by(id: booking_params[:flight_id])
     @booking = flight.bookings.new(booking_params)
     if @booking.save
       BookingMailer.booking_confirmation(@booking).deliver_later
@@ -59,7 +59,7 @@ class BookingsController < ApplicationController
   end
 
   def find_booking_by_code
-    @booking = Booking.find_by reference: params[:ref].strip
+    @booking = Booking.find_by(reference: params[:ref].strip)
     @booking || record_not_found
   end
 

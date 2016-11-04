@@ -12,7 +12,7 @@ end
 
 CSV.foreach("#{Rails.root}/lib/seeds/flights.csv",
             headers: true, header_converters: :symbol) do |row|
-  airline = Airline.find_by code: row[:airline]
+  airline = Airline.find_by(code: row[:airline])
   row.delete(6)
   airline.flights.create(row.to_hash)
 end
