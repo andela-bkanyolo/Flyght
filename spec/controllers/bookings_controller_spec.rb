@@ -204,7 +204,7 @@ RSpec.describe BookingsController, type: :controller do
       expect(Booking.find_by(id: booking.id)).to eq nil
     end
 
-    it 'returns a status code of 200' do
+    it 'returns a status code of 302' do
       expect(response.status).to eq 302
     end
 
