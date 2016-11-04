@@ -1,9 +1,13 @@
 $('#results').empty()
-<% if @search.errors.any? %>
-  <% @search.errors.each do |error| %>
-    Materialize.toast('<%= error %>', 4000, 'rounded')
+<% errors = check_search(params[:origin], params[:destination], params[:date]) %>
+<% if errors.any? %>
+  <% errors.each do |error| %>
+    Materialize.toast('<%= error %>', 4000, 'rounded');
   <% end %>
+<% elsif @flights.empty? %>
+  Materialize.toast('No flights available for this route.', 4000, 'rounded');
 <% else %>
+  Materialize.toast('<%= "#{pluralize(@flights.count, "flight")} found" %>', 4000, 'rounded');
   $('#results')
-    .html("<%= j(render partial: 'flights/partials/results_form', locals: { search: @search } ) %>");
+    .html("<%= j(render partial: 'flights/partials/results_form', locals: { flights: @flights } ) %>");
 <% end %>

@@ -1,7 +1,6 @@
 class Flight < ApplicationRecord
-  attr_reader :origin_airport, :destination_airport
   validates :origin, :destination, :departure, :distance, :duration,
-    :price, presence: true
+            :price, presence: true
   belongs_to :airline
   has_many :bookings
 
@@ -28,7 +27,7 @@ class Flight < ApplicationRecord
   end
 
   def self.from_to(origin, destination)
-    if destination == ""
+    if destination.empty?
       where(origin: origin).order(price: :asc)
     else
       where(origin: origin, destination: destination).order(price: :asc)

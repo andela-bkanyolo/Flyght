@@ -4,10 +4,6 @@ class FlightsController < ApplicationController
   end
 
   def index
-    origin = params[:origin]
-    destination = params[:destination]
-    passengers = params[:passengers]
-    date = params[:date]
-    @search = FlightSearch.new(origin, destination, passengers, date)
+    @flights = Flight.from_to(params[:origin], params[:destination])
   end
 end
