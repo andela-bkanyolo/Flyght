@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe BookingsController, type: :controller do
-  subject(:booking) { create :booking }
+  subject(:booking) { create(:booking) }
 
   describe '#new' do
-    let(:flight) { create :flight }
+    let(:flight) { create(:flight) }
 
     context 'when flight was selected' do
       before(:each) do
@@ -217,4 +217,54 @@ RSpec.describe BookingsController, type: :controller do
     end
   end
 
+  describe '#manage' do
+    before(:each) do
+      get :manage, params: { ref: booking.reference }
+    end
+
+    it 'assigns a booking object' do
+      expect(assigns(:booking)).to eq booking
+    end
+
+    it 'returns a status code of 302' do
+      expect(response.status).to eq 302
+    end
+
+    it 'sets the flash' do
+      expect(flash[:alert]).to eq 'Booking found.'
+    end
+
+    context 'when user is anonymous' do
+      it 'redirects to show booking path' do
+        expect(response).to redirect_to(assigns(:booking))
+      end
+    end
+
+    context 'when user is logged in' do
+      let(:user_booking) { create(:booking, email: booking.user.email) }
+
+      before(:each) do
+        stub_current_user(booking.user)
+        get :manage, params: { ref: user_booking.reference }
+      end
+
+      it 'redirects to edit booking path' do
+        expect(response).to redirect_to edit_booking_path(user_booking)
+      end
+    end
+
+    context 'with invalid booking reference' do
+      before(:each) do
+        get :manage, params: { ref: Faker::Code.asin }
+      end
+
+      it 'redirects to edit booking path' do
+        expect(response).to redirect_to find_bookings_path
+      end
+
+      it 'sets the flash' do
+        expect(flash[:alert]).to eq 'Booking was not found.'
+      end
+    end
+  end
 end
