@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe BookingsController, type: :controller do
+  subject(:booking) { create :booking }
+
   describe '#new' do
     let(:flight) { create :flight }
 
@@ -48,4 +50,17 @@ RSpec.describe BookingsController, type: :controller do
       end
     end
   end
+
+  describe '#edit' do
+    before(:each) { get :edit, params: { id: booking.id } }
+
+    it 'returns a status code of 200' do
+      expect(response.status).to eq 200
+    end
+
+    it 'renders the edit template' do
+      expect(response).to render_template('edit')
+    end
+  end
+
 end
