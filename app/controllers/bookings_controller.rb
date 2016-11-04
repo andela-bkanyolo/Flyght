@@ -1,6 +1,7 @@
 class BookingsController < ApplicationController
   before_action :find_booking_by_code, only: [:manage]
   before_action :find_booking_by_id, only: [:show, :edit, :update, :destroy]
+  before_action :require_login, only: [:edit, :update, :destroy]
 
   def new
     flight = Flight.find_by(id: params[:flight])

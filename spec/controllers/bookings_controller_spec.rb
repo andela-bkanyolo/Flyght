@@ -121,7 +121,10 @@ RSpec.describe BookingsController, type: :controller do
   end
 
   describe '#edit' do
-    before(:each) { get :edit, params: { id: booking.id } }
+    before(:each) do
+      stub_current_user(booking.user)
+      get :edit, params: { id: booking.id }
+    end
 
     it 'assigns a booking object' do
       expect(assigns(:booking)).to eq booking
@@ -141,6 +144,7 @@ RSpec.describe BookingsController, type: :controller do
 
     context 'when parameters are valid' do
       before(:each) do
+        stub_current_user(booking.user)
         patch :update, params: {
           id: booking.id,
           booking: attributes_for(:booking,
@@ -167,6 +171,7 @@ RSpec.describe BookingsController, type: :controller do
 
     context 'when parameters are invalid' do
       before(:each) do
+        stub_current_user(booking.user)
         patch :update, params: {
           id: booking.id,
           booking: attributes_for(:booking,
@@ -185,6 +190,30 @@ RSpec.describe BookingsController, type: :controller do
       it 'renders the edit template' do
         expect(response).to render_template('edit')
       end
+    end
+  end
+
+  describe '#destroy' do
+    let(:user) { booking.user }
+    before(:each) do
+      stub_current_user(user)
+      delete :destroy, params: { id: booking.id }
+    end
+
+    it 'deletes the booking' do
+      expect(Booking.find_by(id: booking.id)).to eq nil
+    end
+
+    it 'returns a status code of 200' do
+      expect(response.status).to eq 302
+    end
+
+    it 'sets the flash' do
+      expect(flash[:alert]).to eq 'Your booking was successfully deleted!'
+    end
+
+    it 'redirects to bookings user path' do
+      expect(response).to redirect_to bookings_user_path(user)
     end
   end
 
