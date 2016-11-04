@@ -3,10 +3,8 @@ class User < ApplicationRecord
   validates :password,
             presence: true,
             confirmation: true,
-            unless: Proc.new { |a| a.password.blank? },
             length: { minimum: 6 }
   validates :password_confirmation, presence: true
-
   validates :email,
             uniqueness: true,
             presence: true,

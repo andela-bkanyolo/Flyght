@@ -47,9 +47,8 @@
       <%= hidden_field_tag "passengers_count", @booking.passengers.size %>
       <%= hidden_field_tag "booking[departure]", @booking.departure %>
       <%= hidden_field_tag "booking[flight_id]", @booking.flight.id %>
-      <% if current_user %>
-        <%= hidden_field_tag "booking[user_id]", current_user.id %>
-      <% end %>
+      <%= hidden_field_tag "booking[user_id]", current_user_or_default.id %>
+
 
       <ul>
         <%= f.fields_for :passengers do |passengers_form| %>
