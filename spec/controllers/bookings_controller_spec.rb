@@ -104,8 +104,28 @@ RSpec.describe BookingsController, type: :controller do
     end
   end
 
+  describe '#show' do
+    before(:each) { get :show, params: { id: booking.id } }
+
+    it 'assigns a booking object' do
+      expect(assigns(:booking)).to eq booking
+    end
+
+    it 'returns a status code of 200' do
+      expect(response.status).to eq 200
+    end
+
+    it 'renders the show template' do
+      expect(response).to render_template('show')
+    end
+  end
+
   describe '#edit' do
     before(:each) { get :edit, params: { id: booking.id } }
+
+    it 'assigns a booking object' do
+      expect(assigns(:booking)).to eq booking
+    end
 
     it 'returns a status code of 200' do
       expect(response.status).to eq 200
@@ -113,6 +133,58 @@ RSpec.describe BookingsController, type: :controller do
 
     it 'renders the edit template' do
       expect(response).to render_template('edit')
+    end
+  end
+
+  describe '#update' do
+    let(:departure) { booking.departure + 1.day }
+
+    context 'when parameters are valid' do
+      before(:each) do
+        patch :update, params: {
+          id: booking.id,
+          booking: attributes_for(:booking,
+                                  email: booking.email,
+                                  departure: booking.departure,
+                                  flight_id: booking.flight.id,
+                                  user_id: booking.user_id,
+                                  passengers: attributes_for(:passenger))
+        }
+      end
+
+      it 'sets the flash' do
+        expect(flash[:alert]).to eq 'Your booking was successfully updated.'
+      end
+
+      it 'returns a status code of 302' do
+        expect(response.status).to eq 302
+      end
+
+      it 'redirects to the show view' do
+        expect(response).to redirect_to(assigns(:booking))
+      end
+    end
+
+    context 'when parameters are invalid' do
+      before(:each) do
+        patch :update, params: {
+          id: booking.id,
+          booking: attributes_for(:booking,
+                                  email: booking.email,
+                                  departure: nil,
+                                  flight_id: booking.flight.id,
+                                  user_id: booking.user_id,
+                                  passengers: attributes_for(:passenger))
+        }
+      end
+
+      it 'does not update the booking' do
+        expect(assigns[:booking].errors[:departure]).to include "can't be blank"
+      end
+
+      it 'renders the edit template' do
+        expect(response).to render_template('edit')
+      end
     end
   end
 
