@@ -20,12 +20,11 @@ RSpec.describe Airport, type: :model do
 
   describe 'airports by geography' do
     it 'should return airports sorted geographically' do
-      airport_a = create(:airport, country: 'A')
-      airport_b = create(:airport, country: 'B')
+      a = create(:airport, country: 'A')
+      b = create(:airport, country: 'B')
       airports = Airport.airports_by_geography
 
-      expect(airports[0]).to eq airport_a
-      expect(airports[1]).to eq airport_b
+      expect(airports.find_index(a)).to be < airports.find_index(b)
     end
   end
 end
