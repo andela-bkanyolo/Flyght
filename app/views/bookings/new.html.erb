@@ -36,6 +36,14 @@
         <%= f.label :email, "Your email" %>
       <% end %>
       </div>
+
+      <div class="col s12 m12 l12" id="add-remove">
+        <%= link_to "Add Passenger", new_booking_path(flight: @booking.flight.id, departure: @booking.departure, passengers_count: @booking.passengers.size + 1 ),
+            class: "btn waves-effect waves-light col s8 m3 l3 offset-s2 offset-m2 offset-l2", id: "add" %>
+        <%= link_to "Remove Passenger", new_booking_path(flight: @booking.flight.id, departure: @booking.departure, passengers_count: @booking.passengers.size - 1 ),
+            class: "btn waves-effect waves-light col s8 m3 l3 offset-s2 offset-m2 offset-l2", id: "remove" unless @booking.passengers.size == 1 %>
+      </div>
+
       <%= hidden_field_tag "passengers_count", @booking.passengers.size %>
       <%= hidden_field_tag "booking[departure]", @booking.departure %>
       <%= hidden_field_tag "booking[flight_id]", @booking.flight.id %>

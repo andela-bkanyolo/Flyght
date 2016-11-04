@@ -15,27 +15,26 @@ class FlightsController
     private
 
     def check_route(origin, destination)
-      if origin == destination
-        @errors << "Origin and Destination airport cannot be the same."
-      end
+      return unless origin == destination
+      @errors << 'Origin and Destination airport cannot be the same.'
     end
 
     def check_date(date)
       begin
         @date = Time.parse(date)
         if @date < Time.now
-          @errors << "Date cannot be same as or earlier than current date."
+          @errors << 'Date cannot be same as or earlier than current date.'
         elsif @date > Time.now + 1.year
-          @errors << "Date cannot be later than one year from today."
+          @errors << 'Date cannot be later than one year from today.'
         end
       rescue ArgumentError
-        @errors << "Invalid date entered."
+        @errors << 'Invalid date entered.'
       end
     end
 
     def get_flights(origin, destination)
       @flights = Flight.from_to(origin, destination)
-      @errors << "No flights available for this route." if @flights.empty?
+      @errors << 'No flights available for this route.' if @flights.empty?
     end
   end
 end
