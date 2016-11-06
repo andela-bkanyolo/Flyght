@@ -258,7 +258,7 @@ RSpec.describe BookingsController, type: :controller do
         get :manage, params: { ref: Faker::Code.asin }
       end
 
-      it 'redirects to edit booking path' do
+      it 'redirects to find bookings path' do
         expect(response).to redirect_to find_bookings_path
       end
 
