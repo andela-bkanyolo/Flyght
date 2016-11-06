@@ -29,7 +29,7 @@
             <td><%= booking.updated_at.strftime '%Y-%m-%d %H:%M' %></td>
             <td><%= link_to "View", booking %></td>
             <td><%= link_to "Edit", edit_booking_path(booking) %></td>
-            <% if booking_expired(booking) %>
+            <% if booking.expired? %>
               <td>EXPIRED</td>
             <% else %>
               <td><%= link_to "Cancel Booking", booking_path(booking), method: :delete, data: { confirm: "Are you sure you want to cancel this boooking?" }%></td>
@@ -42,4 +42,3 @@
     <% end %>
   </div>
 </div>
-

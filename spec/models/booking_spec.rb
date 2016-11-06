@@ -18,10 +18,26 @@ RSpec.describe Booking, type: :model do
   end
 
   describe 'price' do
-    it 'total price should depend on number of passengers' do
+    it 'depends on number of passengers' do
       booking = create(:booking)
       price = booking.passengers.size * booking.flight.price
       expect(booking.price).to eq price
+    end
+  end
+
+  describe 'expired' do
+    context 'when departure date is past' do
+      it 'returns true' do
+        booking = create(:booking, departure: Time.now - 1.day)
+        expect(booking.expired?).to be true
+      end
+    end
+
+    context 'when departure date has not reached' do
+      it 'returns false' do
+        booking = create(:booking, departure: Time.now + 1.day)
+        expect(booking.expired?).to be false
+      end
     end
   end
 end

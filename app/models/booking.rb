@@ -22,4 +22,8 @@ class Booking < ApplicationRecord
   def set_price
     self.price = total_booking_cost(flight, passengers.size)
   end
+
+  def expired?
+    flight.departure_date(departure) < Time.now
+  end
 end
