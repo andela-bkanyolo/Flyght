@@ -67,3 +67,4 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 end
 include Helpers
+Capybara.default_max_wait_time = 5
