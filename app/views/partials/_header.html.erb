@@ -8,7 +8,7 @@
               <li><%= link_to "Manage Booking", find_bookings_path %></li>
               <% if current_user %>
                 <li><%= link_to "Past Bookings", bookings_user_path(current_user) %></li>
-                <li><%= link_to "Sign Out", logout_path, method: :delete %></li>
+                <li><%= link_to "Sign Out", logout_path, method: :delete, id: 'Sign Out' %></li>
               <% else %>
                 <li><%= link_to "Sign Up", signup_path %></li>
                 <li><%= link_to "Log In", login_path %></li>
@@ -18,7 +18,7 @@
               <li><%= link_to "Manage Booking", find_bookings_path %></li>
               <% if current_user %>
                 <li><%= link_to "Past Bookings", bookings_user_path(current_user) %></li>
-                <li><%= link_to "Sign Out", logout_path, method: :delete %></li>
+                <li><%= link_to "Sign Out", logout_path, method: :delete, id: 'Sign Out' %></li>
               <% else %>
                 <li><%= link_to "Sign Up", signup_path %></li>
                 <li><%= link_to "Log In", login_path %></li>
