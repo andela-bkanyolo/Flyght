@@ -1,5 +1,4 @@
 [![Build Status](https://semaphoreci.com/api/v1/bernardkanyolo/flyght-2/branches/develop/badge.svg)](https://semaphoreci.com/bernardkanyolo/flyght-2)
-[![Coverage Status](https://coveralls.io/repos/github/andela-bkanyolo/flyght/badge.svg?branch=develop)](https://coveralls.io/github/andela-bkanyolo/flyght?branch=develop)
 [![Code Climate](https://codeclimate.com/github/andela-bkanyolo/flyght/badges/gpa.svg)](https://codeclimate.com/github/andela-bkanyolo/flyght)
 [![Issue Count](https://codeclimate.com/github/andela-bkanyolo/flyght/badges/issue_count.svg)](https://codeclimate.com/github/andela-bkanyolo/flyght)
 # FLYGHT
