@@ -24,4 +24,10 @@ RSpec.describe User, type: :model do
       expect(user.full_name).to eq 'Ben Kanyolo'
     end
   end
+
+  describe '.default_user' do
+    it 'should return the default user or create one' do
+      expect(User.default_user.email).to eq 'default@flyght.com'
+    end
+  end
 end
