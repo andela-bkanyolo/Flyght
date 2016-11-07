@@ -6,6 +6,11 @@ RSpec.feature 'Sign Up', js: true do
     @registered = create(:user)
   end
 
+  after(:all) do
+    @user.destroy
+    @registered.destroy
+  end
+
   scenario 'User clicks on Sign Up' do
     visit root_path
     click_on 'Sign Up'

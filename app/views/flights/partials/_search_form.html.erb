@@ -15,12 +15,12 @@
 
     <div class="col s12 l4">
       <div class="input-field">
-        <%= select_tag(:passengers, options_for_select((1..100).to_a)) %>
+        <%= select_tag(:passengers, options_for_select((1..9).to_a)) %>
         <%= label_tag("Passengers") %>
       </div>
 
       <div class="input-field">
-        <input type="date" name="date" class="datepicker">
+        <input type="date" name="date" id= "date" class="datepicker">
       </div>
     </div>
 

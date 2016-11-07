@@ -2,11 +2,20 @@ require 'rails_helper'
 
 RSpec.feature 'Manage Booking', js: true do
   before(:all) do
-    origin = create(:airport)
-    destination = create(:airport)
-    flight = create(:flight, origin: origin.code, destination: destination.code)
-    @booking = create(:booking, flight_id: flight.id)
+    @origin = create(:airport)
+    @destination = create(:airport)
+    @flight = create(:flight,
+                     origin: @origin.code, destination: @destination.code)
+    @booking = create(:booking, flight_id: @flight.id)
     @invalid_booking = build(:booking)
+  end
+
+  after(:all) do
+    @booking.destroy
+    @invalid_booking.destroy
+    @flight.destroy
+    @origin.destroy
+    @destination.destroy
   end
 
   scenario 'User clicks on Manage Booking' do
