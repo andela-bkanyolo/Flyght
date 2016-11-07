@@ -5,8 +5,8 @@
 
         <div class="col s12 m6 l4">
           <div class="z-depth-2" id="radios">
-            <input name="flight" value=<%= flight.id %> type="radio" id=<%= flight.id %> />
-            <%= label_tag 'flight_label', "Book this flight (#{flight.price} USD)", for: flight.id, class: "teal-text text-lighten-2" %>
+            <input class="flight_selector" name="flight" value=<%= flight.id %> type="radio" id=<%= flight.id %> />
+            <%= label_tag 'flight_label', "Book this flight (#{flight.price} USD)", for: flight.id, class: "teal-text text-lighten-2", id: flight.id %>
           </div>
           <div>
             <%= render partial: "partials/flight", locals: { flight: flight, date: Time.parse(params[:date]) } %>
@@ -22,7 +22,7 @@
         <div class="col s12">
           <button id="select"
             class="btn waves-effect waves-light col s12 l12 z-depth-2"
-              type="submit">Select Flight
+              type="submit" id="select">Select Flight
             <i class="material-icons right">send</i>
           </button>
         </div>
