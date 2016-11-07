@@ -23,7 +23,7 @@ class User < ApplicationRecord
       User.create(first_name: 'Default',
                   last_name: 'Default',
                   email: 'default@flyght.com',
-                  password: 'default',
-                  password_confirmation: 'default')
+                  password: ENV["default_user_password"],
+                  password_confirmation: ENV["default_user_password"])
   end
 end
