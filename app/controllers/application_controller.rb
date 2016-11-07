@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user_or_default
-    @current_user || User.find_by(email: 'anonymous@anonymous.com')
+    @current_user || User.default_user
   end
 
   def require_login

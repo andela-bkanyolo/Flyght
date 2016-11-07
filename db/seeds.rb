@@ -16,9 +16,3 @@ CSV.foreach("#{Rails.root}/lib/seeds/flights.csv",
   row.delete(6)
   airline.flights.create(row.to_hash)
 end
-
-User.create(first_name: 'Anonymous',
-            last_name: 'Anonymous',
-            email: 'anonymous@anonymous.com',
-            password: 'anonymous',
-            password_confirmation: 'anonymous')

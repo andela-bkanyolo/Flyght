@@ -17,4 +17,13 @@ class User < ApplicationRecord
   def full_name
     "#{first_name.capitalize} #{last_name.capitalize}"
   end
+
+  def self.default_user
+    User.find_by(email: 'default@flyght.com') ||
+      User.create(first_name: 'Default',
+                  last_name: 'Default',
+                  email: 'default@flyght.com',
+                  password: 'default',
+                  password_confirmation: 'default')
+  end
 end
