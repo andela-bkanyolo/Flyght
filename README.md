@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/andela-bkanyolo/flyght.svg?branch=develop)](https://travis-ci.org/andela-bkanyolo/flyght)
+[![Build Status](https://semaphoreci.com/api/v1/bernardkanyolo/flyght-2/branches/develop/badge.svg)](https://semaphoreci.com/bernardkanyolo/flyght-2)
 [![Coverage Status](https://coveralls.io/repos/github/andela-bkanyolo/flyght/badge.svg?branch=develop)](https://coveralls.io/github/andela-bkanyolo/flyght?branch=develop)
 [![Code Climate](https://codeclimate.com/github/andela-bkanyolo/flyght/badges/gpa.svg)](https://codeclimate.com/github/andela-bkanyolo/flyght)
 [![Issue Count](https://codeclimate.com/github/andela-bkanyolo/flyght/badges/issue_count.svg)](https://codeclimate.com/github/andela-bkanyolo/flyght)
@@ -39,7 +39,7 @@ Flight is a flight management application that allows you to search for flights 
 
 ## Local Set Up
 
-  To get started with this application locally, you''ll need the following technologies:
+  To get started with this application locally, you'll need the following technologies:
 
   * Ruby
   * Git
@@ -76,6 +76,13 @@ Assuming you have setup the application as stated above, you can run the tests w
 
     $  bundle exec rspec
 
+## Contributing
+
+1. Fork this repository [Fork Flyght on Github](https://github.com/andela-bkanyolo/flyght/fork)
+2. Create your feature branch (`git checkout -b ft-my-feature`)
+3. Commit all your changes
+4. Push to the branch (`git push origin ft-my-feature`)
+5. Create a new Pull Request
 
 ## Limitations
   * The application relies on seed data for airports, airlines and flights, hence the data is static and not an actual reprentation of real life flight searching platforms.
