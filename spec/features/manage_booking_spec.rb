@@ -10,14 +10,6 @@ RSpec.feature 'Manage Booking', js: true do
     @invalid_booking = build(:booking)
   end
 
-  after(:all) do
-    @booking.destroy
-    @invalid_booking.destroy
-    @flight.destroy
-    @origin.destroy
-    @destination.destroy
-  end
-
   scenario 'User clicks on Manage Booking' do
     visit root_path
     click_on 'Manage Booking'

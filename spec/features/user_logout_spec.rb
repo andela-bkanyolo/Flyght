@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.feature 'User Logout', js: true do
   before(:all) { @user = create(:user) }
-  after(:all) { @user.destroy }
 
   scenario 'registered and logged in user signs out' do
     login_with(@user.email, @user.password)

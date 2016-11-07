@@ -1,17 +1,11 @@
 require 'rails_helper'
 
-RSpec.feature 'Sign Up', js: true do
+RSpec.feature 'Search Flight', js: true do
   before(:all) do
     @origin = create(:airport)
     @destination = create(:airport)
     @flight = create(:flight,
                      origin: @origin.code, destination: @destination.code)
-  end
-
-  after(:all) do
-    @origin.destroy
-    @destination.destroy
-    @flight.destroy
   end
 
   scenario 'User searches for flight' do

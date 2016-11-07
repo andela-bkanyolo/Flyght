@@ -8,6 +8,7 @@ require 'rspec/rails'
 require 'capybara/rspec'
 require 'capybara/rails'
 require 'support/helpers'
+require 'database_cleaner'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -28,6 +29,7 @@ require 'support/helpers'
 # Checks for pending migration and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
+DatabaseCleaner.strategy = :truncation
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
@@ -45,6 +47,9 @@ RSpec.configure do |config|
       with.library :rails
     end
   end
+
+  config.before(:each) { DatabaseCleaner.start }
+  config.after(:each) { DatabaseCleaner.clean }
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
