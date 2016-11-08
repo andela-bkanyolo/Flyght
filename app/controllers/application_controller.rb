@@ -14,6 +14,6 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-    redirect_to login_path, alert: not_logged_in unless current_user
+    redirect_to(login_path, alert: not_logged_in) unless current_user
   end
 end
