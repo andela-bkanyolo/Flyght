@@ -9,7 +9,7 @@ RSpec.describe Airport, type: :model do
   it { is_expected.to validate_presence_of(:latitude) }
   it { is_expected.to validate_presence_of(:longitude) }
 
-  describe 'formatted' do
+  describe '#formatted' do
     it 'should return a formatted string fo the airport' do
       port = create(:airport)
       list = "#{port.country} - #{port.city} - #{port.name} (#{port.code})"
@@ -18,7 +18,7 @@ RSpec.describe Airport, type: :model do
     end
   end
 
-  describe 'airports by geography' do
+  describe '.airports_by_geography' do
     it 'should return airports sorted geographically' do
       a = create(:airport, country: 'A')
       b = create(:airport, country: 'B')

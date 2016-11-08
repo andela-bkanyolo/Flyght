@@ -17,8 +17,11 @@ RSpec.describe Flight, type: :model do
     let(:origin_airport) { create(:airport) }
     let(:departure_airport) { create(:airport) }
     let(:flight) do
-      create(:flight, origin: origin_airport.code,
-                      destination: departure_airport.code)
+      create(
+        :flight,
+        origin: origin_airport.code,
+        destination: departure_airport.code
+      )
     end
 
     it 'origin object should be accessible from instance methods' do
@@ -30,7 +33,7 @@ RSpec.describe Flight, type: :model do
     end
   end
 
-  describe 'flight numbers' do
+  describe '#number' do
     it 'should return correct flight number' do
       number = flight.airline.code + flight.id.to_s
 
@@ -38,7 +41,7 @@ RSpec.describe Flight, type: :model do
     end
   end
 
-  describe 'departure_dates' do
+  describe '#departure_dates' do
     it 'should return full departure dates' do
       expect(flight.departure_date(flight.departure)).to eq flight.departure
     end
@@ -49,7 +52,7 @@ RSpec.describe Flight, type: :model do
     end
   end
 
-  describe 'searching flights' do
+  describe '.from_to' do
     context 'when destination is set' do
       it 'should return flights with correct origin and destination' do
         flight = create(:flight, origin: 'NBO', destination: 'LOS')
