@@ -8,9 +8,11 @@ RSpec.describe BookingsController, type: :controller do
 
     context 'when flight was selected' do
       before(:each) do
-        get :new, params: { flight: flight.id,
-                            passengers_count: 1,
-                            departure: flight.departure }
+        get :new, params: {
+          flight: flight.id,
+          passengers_count: 1,
+          departure: flight.departure
+        }
       end
 
       it 'assigns that flight to a new booking' do
@@ -58,12 +60,14 @@ RSpec.describe BookingsController, type: :controller do
     context 'when parameters are valid' do
       before(:each) do
         post :create, params: {
-          booking: attributes_for(:booking,
-                                  email: user.email,
-                                  departure: flight.departure,
-                                  flight_id: flight.id,
-                                  user_id: user.id,
-                                  passengers: attributes_for(:passenger))
+          booking: attributes_for(
+            :booking,
+            email: user.email,
+            departure: flight.departure,
+            flight_id: flight.id,
+            user_id: user.id,
+            passengers: attributes_for(:passenger)
+          )
         }
       end
 
@@ -87,10 +91,12 @@ RSpec.describe BookingsController, type: :controller do
     context 'when parameters are invalid' do
       before(:each) do
         post :create, params: {
-          booking: attributes_for(:booking,
-                                  email: nil,
-                                  flight_id: flight.id,
-                                  passengers: attributes_for(:passenger))
+          booking: attributes_for(
+            :booking,
+            email: nil,
+            flight_id: flight.id,
+            passengers: attributes_for(:passenger)
+          )
         }
       end
 
@@ -147,12 +153,14 @@ RSpec.describe BookingsController, type: :controller do
         stub_current_user(booking.user)
         patch :update, params: {
           id: booking.id,
-          booking: attributes_for(:booking,
-                                  email: booking.email,
-                                  departure: booking.departure,
-                                  flight_id: booking.flight.id,
-                                  user_id: booking.user_id,
-                                  passengers: attributes_for(:passenger))
+          booking: attributes_for(
+            :booking,
+            email: booking.email,
+            departure: booking.departure,
+            flight_id: booking.flight.id,
+            user_id: booking.user_id,
+            passengers: attributes_for(:passenger)
+          )
         }
       end
 
@@ -174,12 +182,14 @@ RSpec.describe BookingsController, type: :controller do
         stub_current_user(booking.user)
         patch :update, params: {
           id: booking.id,
-          booking: attributes_for(:booking,
-                                  email: booking.email,
-                                  departure: nil,
-                                  flight_id: booking.flight.id,
-                                  user_id: booking.user_id,
-                                  passengers: attributes_for(:passenger))
+          booking: attributes_for(
+            :booking,
+            email: booking.email,
+            departure: nil,
+            flight_id: booking.flight.id,
+            user_id: booking.user_id,
+            passengers: attributes_for(:passenger)
+          )
         }
       end
 

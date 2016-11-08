@@ -17,7 +17,7 @@ RSpec.describe User, type: :model do
 
   it { is_expected.to have_many(:bookings) }
 
-  describe '.full name' do
+  describe '.full_name' do
     it 'should return formatted full name' do
       user = create(:user, first_name: 'ben', last_name: 'kanyolo')
 

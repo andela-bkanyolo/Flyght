@@ -1,5 +1,10 @@
 class Flight < ApplicationRecord
-  validates :origin, :destination, :departure, :distance, :duration, :price,
+  validates :origin,
+            :destination,
+            :departure,
+            :distance,
+            :duration,
+            :price,
             presence: true
   belongs_to :airline
   has_many :bookings
@@ -17,9 +22,11 @@ class Flight < ApplicationRecord
   end
 
   def departure_date(date)
-    departure.change(year: date.year,
-                     month: date.month,
-                     day: date.day)
+    departure.change(
+      year: date.year,
+      month: date.month,
+      day: date.day
+    )
   end
 
   def arrival_date(date)

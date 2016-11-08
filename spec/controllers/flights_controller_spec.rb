@@ -22,10 +22,12 @@ RSpec.describe FlightsController, type: :controller do
     subject(:flight) { create(:flight) }
 
     before(:each) do
-      get :index, xhr: true, params: { origin: flight.origin,
-                                       destination: flight.destination,
-                                       passengers: 1,
-                                       date: flight.departure }, format: :js
+      get :index, xhr: true, params: {
+        origin: flight.origin,
+        destination: flight.destination,
+        passengers: 1,
+        date: flight.departure
+      }, format: :js
     end
 
     it 'assigns flights the results' do

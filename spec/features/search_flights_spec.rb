@@ -4,8 +4,11 @@ RSpec.feature 'Search Flight', js: true do
   before(:all) do
     @origin = create(:airport)
     @destination = create(:airport)
-    @flight = create(:flight,
-                     origin: @origin.code, destination: @destination.code)
+    @flight = create(
+      :flight,
+      origin: @origin.code,
+      destination: @destination.code
+    )
   end
 
   scenario 'User searches for flight' do

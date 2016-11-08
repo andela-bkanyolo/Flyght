@@ -22,10 +22,12 @@ RSpec.describe UsersController, type: :controller do
     context 'with valid params' do
       let(:user_create_request) do
         post :create, params: {
-          user: attributes_for(:user,
-                               first_name: 'B',
-                               last_name: 'K',
-                               email: user_email)
+          user: attributes_for(
+            :user,
+            first_name: 'B',
+            last_name: 'K',
+            email: user_email
+          )
         }
       end
 

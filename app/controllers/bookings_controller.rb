@@ -73,8 +73,12 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking)
-          .permit(:email, :departure, :flight_id, :user_id,
-                  passengers_attributes: [:id, :name, :age, :passport, :phone])
+    params.require(:booking).permit(
+      :email,
+      :departure,
+      :flight_id,
+      :user_id,
+      passengers_attributes: [:id, :name, :age, :passport, :phone]
+    )
   end
 end
