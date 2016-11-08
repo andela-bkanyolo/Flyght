@@ -1,24 +1,91 @@
-# README
+[![Build Status](https://semaphoreci.com/api/v1/bernardkanyolo/flyght-2/branches/develop/badge.svg)](https://semaphoreci.com/bernardkanyolo/flyght-2)
+[![Coverage Status](https://coveralls.io/repos/github/andela-bkanyolo/flyght/badge.svg?branch=develop)](https://coveralls.io/github/andela-bkanyolo/flyght?branch=develop)
+[![Code Climate](https://codeclimate.com/github/andela-bkanyolo/flyght/badges/gpa.svg)](https://codeclimate.com/github/andela-bkanyolo/flyght)
+[![Issue Count](https://codeclimate.com/github/andela-bkanyolo/flyght/badges/issue_count.svg)](https://codeclimate.com/github/andela-bkanyolo/flyght)
+# FLYGHT
+<img width="1440" alt="screen shot 2016-10-25 at 11 26 25" src="https://cloud.githubusercontent.com/assets/21033429/19678340/0a1baab6-9aa6-11e6-90fa-b08e999fdee9.png">
+<img width="1440" alt="screen shot 2016-10-25 at 11 26 55" src="https://cloud.githubusercontent.com/assets/21033429/19678343/0b4eb784-9aa6-11e6-8b4e-7986c22e969b.png">
+### INTRODUCTION
+Flight is a flight management application that allows you to search for flights from around Africa and then book the flight. The live application can be accessed here:   http://flyghtrails.herokuapp.com/
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Features
 
-Things you may want to cover:
+#### Unregistered users
 
-* Ruby version
+  Users who have not created an account on Flyght can do the following:
 
-* System dependencies
+```Find flights by Origin, Destination and Date.```
 
-* Configuration
+```Specify number of passengers for travel```
 
-* Database creation
+```If any flights form that route exist, they can then select the flight for booking.```
 
-* Database initialization
+```After specifying a valid email and booking, they will receive an email confirmation```
 
-* How to run the test suite
+```They can view a booking by searching for its confirmation number```
 
-* Services (job queues, cache servers, search engines, etc.)
+```Sign up to become registered users```
 
-* Deployment instructions
+### Registered users
 
-* ...
+  In addition to all features for unregistered users, registered users can also:
+
+```List all their past bookings```
+
+```Edit a past booking```
+
+```Cancel a past booking, if it has not already departed```
+
+
+## Local Set Up
+
+  To get started with this application locally, you'll need the following technologies:
+
+  * Ruby
+  * Git
+  * The ruby gem `bundler`
+  * `Rspec` for testing
+
+### Installation
+
+ Clone the repository:
+
+    $  git clone https://github.com/andela-bkanyolo/flyght.git
+
+ Navigate into the directory:
+
+    $  cd flyght
+
+ Install dependencies
+
+    $  bundle install
+
+ Create, migrate and seed database
+
+    $ bundle exec rake db:setup
+
+ Start the server
+
+    $ rails server
+
+ Visit http://localhost:3000 to view the application on your browser.
+
+## Tests
+
+Assuming you have setup the application as stated above, you can run the tests with
+
+    $  bundle exec rspec
+
+## Contributing
+
+1. Fork this repository [Fork Flyght on Github](https://github.com/andela-bkanyolo/flyght/fork)
+2. Create your feature branch (`git checkout -b ft-my-feature`)
+3. Commit all your changes
+4. Push to the branch (`git push origin ft-my-feature`)
+5. Create a new Pull Request
+
+## Limitations
+  * The application relies on seed data for airports, airlines and flights, hence the data is static and not an actual reprentation of real life flight searching platforms.
+  * You can only have a maximum of 10 passengers per booking.
+  * The user cannot pay for the flight booking.
+  * Due to the above limitations, bookings are just for demonstration purposes and a  confirmed booking isn't valid anywhere other than in the application.

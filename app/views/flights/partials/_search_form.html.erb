@@ -1,0 +1,34 @@
+<div class="row z-depth-3 hoverable" id="flight_form">
+  <%= form_tag flights_path, method: 'get', id: "flight_forms", remote: true do %>
+
+    <div class="col s12 l8">
+      <div class="input-field">
+        <%= select_tag(:origin, options_from_collection_for_select(@airports, :code, :formatted)) %>
+        <%= label_tag("Origin") %>
+      </div>
+
+      <div class="input-field">
+        <%= select_tag(:destination, options_from_collection_for_select(@airports, :code, :formatted), prompt: "Anywhere") %>
+        <%= label_tag("Destination") %>
+      </div>
+    </div>
+
+    <div class="col s12 l4">
+      <div class="input-field">
+        <%= select_tag(:passengers, options_for_select((1..9).to_a)) %>
+        <%= label_tag("Passengers") %>
+      </div>
+
+      <div class="input-field">
+        <input type="date" name="date" id= "date" class="datepicker">
+      </div>
+    </div>
+
+    <div class="input-field col s12 l4 offset-l8">
+      <button id="search" class="btn waves-effect waves-light col s12 l12 z-depth-1" type="submit">Search
+        <i class="material-icons right">search</i>
+      </button>
+    </div>
+
+  <% end %>
+</div>

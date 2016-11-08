@@ -1,0 +1,30 @@
+<header>
+<div class="navbar-fixed">
+    <nav class="light-blue darken-4">
+        <div class="nav-wrapper row container">
+            <%= link_to "Flyght", root_path, class: "brand-logo", data: {turbolinks: false} %>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><%= link_to "Manage Booking", find_bookings_path %></li>
+              <% if current_user %>
+                <li><%= link_to "Past Bookings", bookings_user_path(current_user) %></li>
+                <li><%= link_to "Sign Out", logout_path, method: :delete, id: 'Sign Out' %></li>
+              <% else %>
+                <li><%= link_to "Sign Up", signup_path, id: 'Sign Up' %></li>
+                <li><%= link_to "Log In", login_path %></li>
+              <% end %>
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+              <li><%= link_to "Manage Booking", find_bookings_path %></li>
+              <% if current_user %>
+                <li><%= link_to "Past Bookings", bookings_user_path(current_user) %></li>
+                <li><%= link_to "Sign Out", logout_path, method: :delete, id: 'Sign Out' %></li>
+              <% else %>
+                <li><%= link_to "Sign Up", signup_path, id: 'Sign Up' %></li>
+                <li><%= link_to "Log In", login_path %></li>
+              <% end %>
+            </ul>
+        </div>
+    </nav>
+</div>
+</header>

@@ -1,0 +1,25 @@
+// Place all the styles related to the Bookings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#passenger {
+ padding: 5px;
+ border-right: 1px solid gray;
+ margin-bottom: 20px;
+}
+
+#manage {
+  border: 3px solid gray;
+  border-radius: 25px;
+  padding: 0px 20px 0px 20px;
+  margin-top: 20px;
+}
+
+#add #remove {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+#add-remove {
+  margin-bottom: 20px;
+  margin-top: 10px;
+}

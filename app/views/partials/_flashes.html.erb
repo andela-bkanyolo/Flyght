@@ -1,0 +1,5 @@
+<% flash.each do |name, msg| %>
+  <script type="text/javascript">
+    Materialize.toast('<%= msg %>', 4000, 'rounded');
+  </script>
+<% end %>
